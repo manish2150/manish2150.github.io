@@ -1,0 +1,1722 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <input type="text" name="honeypot" style="display:none;">
+    <title>Manish Bhandari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        padding: 1rem 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logo {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        margin-left: 2rem; /* Added left margin for desktop */
+    }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ecf0f1;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                flex-direction: column;
+                background: linear-gradient(135deg, #2c3e50, #3498db);
+                width: 45%;
+                text-align: center;
+                padding: 1.5rem;
+                border-radius: 0 0 0 10px;
+                box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .logo {
+            margin-left: 0; /* Reset left margin for mobile */
+            font-size: 1.3rem;
+        }
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links a::before {
+                display: none;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+        }
+
+        /* Animation for menu items */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .nav-links li {
+            animation: slideIn 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+        .nav-links li:nth-child(2) { animation-delay: 0.2s; }
+        .nav-links li:nth-child(3) { animation-delay: 0.3s; }
+        .nav-links li:nth-child(4) { animation-delay: 0.4s; }
+
+
+
+
+
+        section {
+    padding: 5rem 2rem; /* Reduced from 5rem */
+    min-height: 90vh; /* Remove 100vh constraint */
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    animation: slideIn 0.8s ease;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: slideIn 0.8s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    animation: slideIn 0.8s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.hero .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-content img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+
+/*skill*/
+.skills {
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.skill-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.skill-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.skill-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover img {
+    filter: grayscale(0%);
+    transform: rotate(360deg);
+}
+
+.skill-item span {
+    font-weight: 700;
+    color: #2c3e50;
+    position: relative;
+}
+
+.skill-item span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3498db;
+    transition: width 0.3s ease;
+}
+
+.skill-item:hover span::after {
+    width: 100%;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .skill-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .skill-item img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Animation */
+@keyframes skillEntrance {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+
+/* Portfolio Section */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+
+.portfolio-item {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.portfolio-item.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.portfolio-item video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover video {
+    transform: translateY(-5px);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.filter-buttons button {
+    padding: 0.8rem 2rem;
+    border: none;
+    background: #f0f0f0;
+    color: #333;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* Contact Section */
+
+#contact {
+    padding: 2rem 0 !important; /* Add important to override */
+}
+
+.contact .container {
+    max-width: 800px; /* Increased container width */
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+#contact.section {
+    padding: -10rem -12rem; /* Reduced from 5rem */
+    min-height: auto; /* Remove 100vh constraint */
+}
+
+
+form {
+    width: 100%; /* Full width of container */
+    margin: 0 auto;
+    display: grid;
+    gap: 1.8rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 1.4rem;  /* Increased padding */
+    border: 2px solid #eee;
+    border-radius: 10px;  /* Slightly larger radius */
+    font-size: 1.1rem;  /* Larger font size */
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    line-height: 1.6;  /* Better text spacing */
+}
+
+textarea {
+    min-height: 160px;  /* Taller textarea */
+    resize: vertical;  /* Allow vertical resize only */
+}
+
+input:focus, textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+form button {
+    background: #3498db;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact .container {
+        padding: 0 15px;
+    }
+    
+    input, textarea {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    input, textarea {
+        padding: 1rem;
+    }
+}
+
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #3498db;
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .filter-buttons {
+        flex-wrap: wrap;
+    }
+    
+    section {
+        padding: 4rem 1rem;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Skills Description */
+.skills-description {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.animated-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2c3e50;
+    text-align: center;
+    text-align: justify;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animated-paragraph.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skills-description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3498db22, #e74c3c11);
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .skills-description {
+        margin: 2rem 1rem 0;
+        padding: 1.5rem;
+    }
+    
+    .animated-paragraph {
+        font-size: 1rem;
+        text-align: left;
+    }
+}
+
+
+/* Compact Social Connections */
+.connect-container {
+    padding: 1.5rem 0 2rem;
+}
+
+.connect-heading {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+.compact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.compact-socials a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: white;
+}
+
+/* Brand Colors */
+.linkedin { background: #0A66C2; }
+.whatsapp { background: #25D366; }
+.facebook { background: #1877F2; }
+.instagram { background: linear-gradient(45deg, #f09433, #dc2743, #cc2366); }
+.youtube { background: #FF0000; }
+
+/* Hover Effects */
+.compact-socials a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .connect-container {
+        padding: 1rem 0 1.5rem;
+    }
+    
+    .connect-heading {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .compact-socials {
+        gap: 1rem;
+    }
+    
+    .compact-socials a {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .compact-socials {
+        gap: 0.8rem;
+    }
+    
+    .compact-socials a {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
+/* Education Section */
+.education {
+    background: #f8f9fa;
+    padding-bottom: -1rem !important;
+    padding: 3rem 0;  /* Reduced from 4rem */
+}
+
+
+.education-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.education-item {
+    background: white;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+}
+
+.edu-logo {
+    flex: 0 0 80px;
+}
+
+.edu-logo img {
+    width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+}
+
+.edu-details h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.institute {
+    color: #3498db;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.duration {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.current {
+    border-left: 4px solid #3498db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .education-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .edu-logo {
+        margin-bottom: 1rem;
+    }
+    
+    .current {
+        border-left: none;
+        border-top: 4px solid #3498db;
+    }
+}
+
+@media (max-width: 480px) {
+    .education {
+        padding: 2rem 0;
+    }
+    
+    .edu-details h3 {
+        font-size: 1.1rem;
+    }
+    
+    .institute {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+.story-section {
+    margin-top: -2rem; /* Increased negative margin */
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+}
+
+.journey-card {
+    height: 0%;
+    width: 100%;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.journey-card:hover {
+    transform: translateY(-5px);
+}
+
+.journey-content {
+    position: relative;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.story-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    text-align: justify;
+}
+
+.fun-fact {
+    background: #fff9e6;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border-left: 4px solid #ffd700;
+    font-style: italic;
+    color: #6b533b;
+    margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    
+    .journey-card {
+        padding: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    .story-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .fun-fact {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-section {
+        padding: 2rem 0;
+    }
+    
+    .journey-card {
+        padding: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .story-text {
+        font-size: 0.95rem;
+    }
+    
+    .fun-fact {
+        font-size: 0.9rem;
+    }
+}
+
+/* Fade-in Animation */
+.journey-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.journey-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+ /* FAQ Section */
+ .faq-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      padding: 1rem 0 0.5rem; /* Reduced vertical padding */
+
+    padding-bottom: 2rem; /* Reduce bottom padding */
+}
+    
+    .faq-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .faq-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .faq-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      border: none;
+      background: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .faq-question:hover {
+      background: #f0f0f0;
+    }
+    .faq-question i {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      margin-left: 1rem;
+    }
+    .faq-question[aria-expanded="true"] i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-answer p {
+      padding: 0 2rem 1.5rem;
+      line-height: 1.7;
+      color: #4a5568;
+      margin: 0;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px; /* Adjust based on your content */
+      padding: 1rem 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .faq-question {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+      }
+      .faq-answer p {
+        padding: 0 1.5rem 1rem;
+      }
+    }
+
+
+   
+    /* Vision Section */
+    .vision-section {
+    padding: 0.5rem 0 2rem; /* Changed from 70rem to 2rem */
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+.vision-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 2rem; /* Reduce padding */
+ margin: 0; /* Negative bottom margin */
+    max-width: 800px;
+    transition: transform 0.3s ease;
+}
+
+.vision-card:hover {
+    transform: translateY(-5px);
+}
+
+.vision-content h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem; /* Reduce bottom margin */
+    text-align: center;
+}
+
+.vision-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    text-align: justify;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .vision-card {
+        padding: 1.8rem;
+        margin: 0 1rem 1rem;
+    }
+    
+    .vision-text {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vision-section {
+        padding: 1.5rem 0; /* Reduce padding */
+    }
+    
+    .vision-card {
+        padding: 1.2rem;
+    }
+    
+    .vision-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .vision-text {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+}
+
+
+.alert-error{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+}
+
+.alert-error ul {
+    margin: 0;
+    padding-left: 20px;
+} 
+
+.success-alert {
+    background: #e8f6e9;
+    border: 1px solid #66bb6a;
+    color: #2e7d32;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center; /* This ensures vertical alignment */
+    gap: 10px; /* Space between icon and text */
+}
+
+.success-alert svg {
+    width: 28px; /* Slightly larger icon */
+    height: 28px;
+    fill: #2e7d32 !important;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    display: block; /* Remove SVG default inline spacing */
+}
+
+.success-alert p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 16px; /* Match your body text size */
+}
+    </style>
+</head>
+<body>
+
+
+
+
+    <header class="navbar">
+        <a href="#" class="logo">Manish Bhandari</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#vision">Vision </a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </header>
+
+
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to My Video Editing Portfolio</h1>
+            <p>Showcasing my best work in video editing and production.</p>
+            <a href="#portfolio" class="btn">View My Work</a>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2><br>
+            <div class="about-content">
+            <img src="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/480583143_1696915014537309_3895488081834413779_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=AQr8esQ8y-AQ7kNvwEsq9y1&_nc_oc=AdlxC1AS5w3oxpNbz5b19X0bFgMfpKYl8On_w27bcfYSZ67xJpGzoVwoM0EW_5kdpzdj8yVNL9iM74M0ldAXnLwJ&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=R7GJVYc85QY4a3RwnxB0sw&oh=00_AfEv_XMO-4iJ3ZwQSHKKJdctTwXWW9dj836SBAZeWiVdzg&oe=68006F2D"alt="Your Name">
+                <p>Hi, I’m Manish Bhandari from Nepal, an 18-year-old passionate video editor with four years of experience. I specialize in long-format videos but also work on reels and short-form content. 
+                    I love bringing stories to life through the art of video editing, transforming raw footage into engaging and impactful visuals.</p>
+                    
+            </div>
+            <div class="connect-container">
+                <div class="container">
+              <br> <hr> <br>    <h2 class="connect-heading">LET'S GET CONNECTED ;)</h2>
+                    <div class="compact-socials">
+                        <a href="https://www.linkedin.com/in/manish-bhandari-24215a33b/" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/9779817186819" class="whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                          </a>
+                        <a href="https://www.facebook.com/jhateygamingofficial" class="facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/alishbhandari.2150/" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@JhateyGaming" class="youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+<!-- Updated Skills Section -->
+<section id="skills" class="skills">
+    <div class="container">
+        <h2>Editing Expertise</h2>
+        <div class="skills-grid">
+            <!-- Existing Items -->
+            <div class="skill-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png" alt="Premiere Pro">
+                <span>Premiere Pro</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/2101px-Adobe_After_Effects_CC_icon.svg.png" alt="After Effects">
+                <span>After Effects</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://www.rippletraining.com/wp-content/uploads/2018/02/davinci-resolve-14-logo.png" alt="DaVinci Resolve">
+                <span>DaVinci Resolve</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://download.blender.org/branding/blender_logo.png" alt="Blender">
+                <span>Blender</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://freepnglogo.com/images/all_img/1691746000capcut-logo%20(2).png" alt="CapCut">
+                <span>CapCut</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://www.vnvideoeditor.com/wp-content/uploads/2024/02/cropped-vn-video-editor.png" alt="VN Editor">
+                <span>VN Editor</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://archive.org/download/power-director-logo/PowerDirector_logo.png" alt="Power Director">
+                <span>Power Director</span>
+            </div>
+            <!-- New Additions -->
+            <div class="skill-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/2101px-Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
+                <span>Lightroom</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://pngdownload.io/wp-content/uploads/2024/03/Inshot-logo-video-editing-app-app-icon-transparent-PNG-image-jpg.webp" alt="InShot">
+                <span>InShot</span>
+            </div>
+            <div class="skill-item">
+                <img src="https://freelogopng.com/images/all_img/1664216908kinemaster-logo-png.png" alt="KineMaster">
+                <span>KineMaster</span>
+            </div>
+        </div>
+        <div class="skills-description">
+            <p class="animated-paragraph">
+                I am a skilled Video Editor proficient in both PC and mobile editing. Starting with mobile editing <b>Four years ago </b>, I've transitioned to PC for advanced work.<br><br>
+                My expertise spans from basic edits to VFX level, including 3D elements, captions, smooth transitions, chroma keying, Motion Graphics, Camera Tracking, Color Grading, and Sound Design. Additionally, I am a short film editor.
+        </div>
+    </div>
+</section>
+
+
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>My Portfolio</h2><br>
+            <div class="filter-buttons">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="corporate">Corporate</button>
+                <button data-filter="music">Music Videos</button>
+                <button data-filter="short-films">Short Films</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item corporate">
+                    <video controls>
+                        <source src="assets/videos/corporate1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="portfolio-item music">
+                    <video controls>
+                        <source src="assets/videos/music1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="portfolio-item short-films">
+                    <video controls>
+                        <source src="assets/videos/short-film1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Add this after Portfolio section -->
+<section id="education" class="education">
+    <div class="container">
+        <h2>EDUCATION: </h2><br>
+        <div class="education-timeline">
+            <!-- +2 Education -->
+            <div class="education-item">
+                <div class="edu-logo">
+                    <img src="https://media.edusanjal.com/__sized__/logos/Shree_Vindhyavasini_Secondary_School_logo-thumbnail-200x200.png" alt="Vindhya Vasini Logo">
+                </div>
+                <div class="edu-details">
+                    <h3>+2 Management (Computer Science)</h3>
+                    <p class="institute">Shree Vindhya Vasini Secondary School</p>
+                    <p class="duration">2022 - 2024</p>
+                </div>
+            </div>
+
+            <!-- Bachelor's Education -->
+            <div class="education-item current">
+                <div class="edu-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/54/Tribhuvan_University_logo.svg" alt="TU Logo">
+                </div>
+                <div class="edu-details">
+                    <h3>Bachelor in Computer Application</h3>
+                    <p class="institute">Tribhuvan University<br>Prithvi Narayan Campus</p>
+                    <p class="duration">2024 - Present</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this after Education section -->
+<section id="journey" class="story-section">
+    <div class="container">
+        <div class="journey-card">
+            <h2>How I Started My Editing Journey ?¿</h2>
+            <div class="journey-content">
+                <p class="story-text">
+                    My editing journey began when I was in class eight, during the time when TikTok was trending. 
+                    I used to watch various editing content and wonder how they were created. Curious to learn, 
+                    I turned to YouTube, where many creators recommended PowerDirector—<strong>which became my first 
+                    editing software.</strong> CapCut existed back then but wasn’t popular yet. So, I experimented on my 
+                    own, using myself as the model and shooting videos to practice editing. Over time, my skills 
+                    improved, leading me to where I am today.
+                </p>
+                
+                <div class="fun-fact">
+                    ✨ <strong>Fun fact:</strong> My fascination with editing started because I wanted to add a flying helicopter 
+                    to my video—and that small curiosity sparked my entire journey!
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+ <!-- Add after Journey section -->
+ <section id="faq" class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What's your typical turnaround time for projects?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Standard projects typically take 2 days depending on complexity. Rush jobs are available with a 24-48 hour delivery time.</p>
+          </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What file formats do you work with?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>I work with all major formats: MP4, MP3, MOV, AVI, RAW camera files etc. Final delivery is typically in H.264 MP4 unless otherwise requested.</p>
+          </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do you provide raw project files?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, I provide raw projects file. This includes all project files, assets, and editable layers.</p>
+          </div>
+        </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can you work with multi-camera setups?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely. I can manage and edit footage from multiple cameras, ensuring that the final product captures the best angles and maintains a seamless narrative.</p>
+            </div>
+          </div>
+
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer color grading and correction services?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, I provide professional color grading and correction to ensure your footage has a consistent and cinematic look throughout the project.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Add after FAQ section -->
+<section id="vision" class="vision-section">
+    <div class="container">
+        <div class="vision-card">
+            <h2>My Vision</h2>
+            <div class="vision-content">
+                <p class="vision-text">
+                    I have long aspired to create professional short films that captivate audiences and spark meaningful conversations. To bring this vision to life, I’m 
+                    looking to assemble a dedicated group of individuals from <b>Pokhara</b> who share my passion for cinematography. If you own camera equipment and are eager
+                     to hone your craft, I invite you to join me on this creative journey. Together, we can learn from one another, push our artistic boundaries,
+                     and produce compelling short films that showcase our collective talent. Let’s collaborate, inspire, and grow as we embark on this exciting adventure in filmmaking.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Contact Me</h2><br>
+        <form 
+            id="contact-form" 
+            action="https://formspree.io/f/xoverwwn"
+            method="POST"
+        >
+
+            <div id="error-messages"></div>
+            <div id="success-message" class="message-container" style="display: none;"></div>
+            <!-- Honeypot field -->
+            <input type="text" name="honeypot" style="display:none;">
+            
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required 
+                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                   title="Please enter a valid email address (e.g., user@example.com)">
+            <textarea name="message" placeholder="Your Message" required minlength="5"></textarea>
+            <button type="submit" name="send">Send Message</button>
+        </form>
+    </div>
+</section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Manish Bhandari. All rights reserved.</p>
+            <div class="social-links">
+
+
+
+            
+                <a href="https://www.facebook.com/jhateygamingofficial"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/alishbhandari.2150/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/manish-bhandari-24215a33b/"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+
+
+
+
+    <script>
+
+// Intersection Observer for sections
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Animate paragraphs within section
+            const paragraph = entry.target.querySelector('.animated-paragraph');
+            if (paragraph) {
+                setTimeout(() => paragraph.classList.add('visible'), 300);
+            }
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('section').forEach(section => {
+    sectionObserver.observe(section);
+});
+
+// Intersection Observer for skill items
+const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.animation = `skillEntrance 0.6s ease ${index * 0.1}s forwards`;
+            }, 300);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.skill-item').forEach(skill => {
+    skillObserver.observe(skill);
+});
+
+// Menu toggle functionality
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+    
+    if (navLinks.classList.contains('active')) {
+        document.querySelectorAll('.nav-links li').forEach((item, index) => {
+            item.style.animation = `slideIn 0.3s ease forwards ${index * 0.1}s`;
+        });
+    }
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.querySelector('.hamburger');
+
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        navLinks.classList.remove('active');
+    }
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+        if (window.innerWidth <= 768) {
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+    });
+});
+
+// Portfolio Filtering Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-buttons button');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    function filterPortfolio(category) {
+        portfolioItems.forEach(item => {
+            const shouldShow = category === 'all' || item.classList.contains(category);
+            item.classList.toggle('active', shouldShow);
+        });
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            filterPortfolio(button.dataset.filter);
+        });
+    });
+
+    filterPortfolio('all');
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function checkScroll() {
+        const journeyCard = document.querySelector('.journey-card');
+
+        if (journeyCard) {
+            const cardTop = journeyCard.getBoundingClientRect().top;
+            const cardTrigger = window.innerHeight * 0.9;
+            if (cardTop < cardTrigger) {
+                journeyCard.classList.add('visible');
+            }
+        }
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Run on page load
+});
+  
+
+
+
+
+
+
+
+
+
+ // FAQ Interaction
+ document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const faqItem = button.closest('.faq-item');
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle the clicked FAQ item
+        button.setAttribute('aria-expanded', !isOpen);
+        faqItem.classList.toggle('active');
+
+        // Close other items unless Shift is held down
+        if (!event.shiftKey) {
+          document.querySelectorAll('.faq-item').forEach(otherItem => {
+            if (otherItem !== faqItem) {
+              otherItem.classList.remove('active');
+              const otherButton = otherItem.querySelector('.faq-question');
+              if (otherButton) {
+                otherButton.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for smooth fade-in animations
+    const faqObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          faqObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      faqObserver.observe(item);
+    });
+
+
+
+
+    
+
+    
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const errorContainer = document.getElementById('error-messages');
+    const successContainer = document.getElementById('success-message'); // Add this in HTML
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    function showSuccess(message) {
+    successContainer.innerHTML = `
+        <div class="success-alert">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <p>${message}</p>
+        </div>
+    `;
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorContainer.innerHTML = '';
+        successContainer.innerHTML = '';
+        
+        // Get form values
+        const formData = new FormData(form);
+        const entries = Object.fromEntries(formData.entries());
+        
+        // Honeypot check
+        if (entries.honeypot) {
+            showErrors(['Bot detected']);
+            return;
+        }
+
+        // Client-side validation
+        const errors = [];
+        
+        if (!entries.name?.trim()) errors.push('Name is required');
+        if (!entries.email?.trim()) {
+            errors.push('Email is required');
+        } else if (!emailRegex.test(entries.email)) {
+            errors.push('Please enter a valid email address');
+        }
+        if (!entries.message?.trim()) {
+            errors.push('Message is required');
+        } else if (entries.message.trim().length < 10) {
+            errors.push('Message must be at least 10 characters');
+        }
+
+        if (errors.length > 0) {
+            showErrors(errors);
+            return;
+        }
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            const result = await response.json();
+
+            if (result.ok || result.success) {
+                showSuccess('Message sent successfully!');
+                form.reset();
+            } else {
+                const errorMsg = result.errors?.[0]?.message || 
+                               result.error || 
+                               'Submission failed. Please try again.';
+                showErrors([errorMsg]);
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            showErrors([`Failed to send: ${error.message}`]);
+        }
+    });
+
+    function showErrors(messages) {
+        errorContainer.innerHTML = `
+            <div class="alert-error">
+                <ul>
+                    ${messages.map(msg => `<li>${msg}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+        errorContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showSuccess(message) {
+        successContainer.innerHTML = `
+            <div class="success-alert">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                ${message}
+            </div>
+        `;
+        successContainer.style.display = 'block';
+        successContainer.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => successContainer.style.display = 'none', 5000);
+    }
+});
+  </script>
+</body>
+</html>
+
