@@ -1,10 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Add these meta tags -->
+<meta http-equiv="Content-Security-Policy" content="child-src https://drive.google.com">
+<meta name="referrer" content="no-referrer">
 
     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     <input type="text" name="honeypot" style="display:none;">
@@ -100,49 +102,57 @@
             transform: rotate(90deg);
         }
 
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
+       @media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem;
+    }
 
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                flex-direction: column;
-                background: linear-gradient(135deg, #2c3e50, #3498db);
-                width: 45%;
-                text-align: center;
-                padding: 1.5rem;
-                border-radius: 0 0 0 10px;
-                box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease;
-            }
+    .nav-links {
+        position: fixed;
+        top: 50px; /* Reduced from 60px */
+        right: -100%;
+        flex-direction: column;
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        width: 65%; /* Increased for better fit on small devices */
+        max-height: 80vh; /* Avoids overflow beyond screen height */
+        overflow-y: auto; /* Allows scrolling if needed */
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0 0 0 20px;
+        box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+    }
 
-            .nav-links.active {
-                right: 0;
-            }
+    .nav-links.active {
+        right: 0;
+    }
 
-            .logo {
-            margin-left: 0; /* Reset left margin for mobile */
-            font-size: 1.3rem;
-        }
-            .nav-links li {
-                margin: 1rem 0;
-            }
+    .logo {
+        margin-left: 0;
+        font-size: 1.1rem;
+    }
 
-            .hamburger {
-                display: block;
-            }
+    .nav-links li {
+        margin: 0.7rem 0;
+    }
 
-            .nav-links a::before {
-                display: none;
-            }
+    .nav-links a {
+        font-size: 0.95rem; /* Smaller text for better fit */
+    }
 
-            .nav-links a:hover {
-                background: rgba(255, 255, 255, 0.15);
-            }
-        }
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links a::before {
+        display: none;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
 
         /* Animation for menu items */
         @keyframes slideIn {
@@ -362,51 +372,25 @@ section.visible {
 
 
 
-/* Portfolio Section */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+/* Portfolio Section - Full CSS */
+.portfolio {
+    padding: 4rem 0;
+    position: relative;
 }
 
-
-.portfolio-item {
-    display: none;
-    animation: fadeIn 0.5s ease forwards;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.portfolio-item.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.portfolio-item video {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover video {
-    transform: translateY(-5px);
-}
-
+/* Filter Buttons */
 .filter-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .filter-buttons button {
@@ -417,6 +401,7 @@ section.visible {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .filter-buttons button.active,
@@ -424,6 +409,158 @@ section.visible {
     background: #3498db;
     color: white;
 }
+
+/* New Portfolio Styles */
+.portfolio {
+    padding: 2rem 1rem;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-buttons button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #007bff;
+    background: white;
+    color: #007bff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-buttons button.active {
+    background: #007bff;
+    color: white;
+}
+
+.video-grid {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reel-grid,
+.yt-grid {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    padding: 0 1rem;
+}
+
+@media (max-width: 480px) {
+    .reel-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    .yt-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .reel-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .yt-grid {
+        grid-template-columns: repeat(2, minmax(300px, 400px));
+    }
+}
+
+@media (min-width: 769px) {
+    .reel-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        gap: 1.5rem;
+        margin: 0 auto 2rem;
+    }
+
+    .yt-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1200px;
+        gap: 2rem;
+    }
+}
+
+.video-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: black;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+}
+
+.video-item:hover {
+    transform: scale(1.02);
+    z-index: 1;
+}
+
+.reel-item {
+    aspect-ratio: 9 / 16;
+}
+
+.yt-item {
+    aspect-ratio: 16 / 9;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: black;
+    border-radius: 10px;
+}
+
+.filter-buttons button[data-filter="graphical"] {
+    border-color: #4CAF50;
+    color: #4CAF50;
+}
+.filter-buttons button[data-filter="graphical"].active {
+    background: #4CAF50;
+    color: white;
+}
+.filter-buttons button[data-filter="event"] {
+    border-color: #9C27B0;
+    color: #9C27B0;
+}
+.filter-buttons button[data-filter="event"].active {
+    background: #9C27B0;
+    color: white;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .fullscreen-btn {
+        display: block;
+    }
+}
+/* End of New Portfolio Styles */
+
 
 /* Contact Section */
 
@@ -566,6 +703,9 @@ footer {
 
 
 /* Skills Description */
+
+
+
 .skills-description {
     max-width: 800px;
     margin: 3rem auto 0;
@@ -619,6 +759,53 @@ footer {
     }
 }
 
+
+/* Skill Item Hover Effects */
+.skill-item:hover img {
+    filter: grayscale(0%);
+    transform: rotate(360deg);
+}
+
+/* Mobile-specific touch interactions */
+@media (max-width: 768px) {
+    /* Disable hover effects on mobile */
+    .skill-item:hover img {
+        transform: none;
+        filter: grayscale(100%);
+    }
+    
+    /* Active state for touched items */
+    .skill-item.active {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    
+    .skill-item.active img {
+        filter: grayscale(0%);
+        transform: rotate(360deg);
+        transition: all 0.6s ease; /* Match rotation duration */
+    }
+    
+    /* Base state transition */
+    .skill-item img {
+        transition: all 0.6s ease;
+    }
+}
+
+
+/* Mobile-specific rotation with touch */
+@media (max-width: 768px) {
+    .skill-item.active img {
+        filter: grayscale(0%);
+        transform: rotate(360deg);
+        transition: all 0.3s ease;
+    }
+    
+    .skill-item.active {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+}
 
 /* Compact Social Connections */
 .connect-container {
@@ -1117,11 +1304,149 @@ h2 {
     line-height: 1.5;
     font-size: 16px; /* Match your body text size */
 }
-    </style>
-</head>
-<body>
 
 
+
+.video-warning {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    animation: blink 1s infinite;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.video-warning {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    animation: blink 1s infinite;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.video-warning::before {
+    content: "⚠️ ";
+    color: yellow;
+    font-size: 1.2rem;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+     .cv-button {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 24px;
+      font-size: 18px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .cv-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Modal overlay */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Modified modal content */
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      background: transparent;
+    }
+
+.modal-image {
+  width: 40px;             /* extremely small */
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto 20px;
+  box-shadow: none;
+}
+
+
+    /* Close Button */
+    .close-btn {
+      padding: 12px 32px;
+      font-size: 16px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: -90px;
+      position: absolute;
+      bottom: 10px;
+    }
+
+    .close-btn:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .modal-image {
+        max-width: 95%;
+        max-height: 70vh;
+      }
+      .close-btn {
+        bottom: 20px;
+        padding: 10px 24px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .modal-image {
+        max-height: 60vh;
+      }
+      .cv-button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+</style>
 
 
     <header class="navbar">
@@ -1232,43 +1557,133 @@ h2 {
                 I am a skilled Video Editor proficient in both PC and mobile editing. Starting with mobile editing <b>Four years ago </b>, I've transitioned to PC for advanced work.<br><br>
                 My expertise spans from basic edits to VFX level, including 3D elements, captions, smooth transitions, chroma keying, Motion Graphics, Camera Tracking, Color Grading, and Sound Design. Additionally, I am a short film editor.
         </div>
-    </div>
+</div>
 </section>
 
 
+<!-- Replace original portfolio section with: -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <h2>My Video Portfolio</h2>
+        <p class="video-warning"> If you can't see play button on video, please Fullscreen the video first and play it.</p>
+        <div class="filter-buttons">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="reel">Reels</button>
+            <button data-filter="graphical">Graphical</button>
+            <button data-filter="event">Event</button>
+            <button data-filter="yt">Videos</button>
+        </div>
 
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2>My Portfolio</h2><br>
-            <div class="filter-buttons">
-                <button class="active" data-filter="all">All</button>
-                <button data-filter="corporate">Corporate</button>
-                <button data-filter="music">Music Videos</button>
-                <button data-filter="short-films">Short Films</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item corporate">
-                    <video controls>
-                        <source src="assets/videos/corporate1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+        <div class="video-grid">
+            <!-- Reels Section -->
+            <div class="reel-grid">
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\piuro lassi report.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
-                <div class="portfolio-item music">
-                    <video controls>
-                        <source src="assets/videos/music1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <div class="video-item reel-item graphical">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\madhyam graphicall.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
-                <div class="portfolio-item short-films">
-                    <video controls>
-                        <source src="assets/videos/short-film1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\king ad re.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
+                </div>
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\lions final day.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
+                </div>
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\rohit rana dynasty.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
+                </div>
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\Birtha academy  (1)-.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
+                </div>
+                <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\piuro solution 1.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
+                </div>
+                 <div class="video-item reel-item">
+                  <video controls playsinline webkit-playsinline>
+                    <source src="c:\Users\Admin\Desktop\big project\kings ielts pte sat.mp4" type="video/mp4">
+                  </video>
+                  <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 
+                
+              </div>
+
+            <!-- Videos Section -->
+            <div class="yt-grid">
+                <div class="video-item yt-item">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\EMONN RAPP.mp4" type="video/mp4">
+                    </video>
+                </div>
+                 <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\lions horizontal (rc).mp4" type="video/mp4">
+                    </video>
+                </div>  
+                 <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\LG PROMOO.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\event .mp4" type="video/mp4">
+                    </video>
+                </div>
+                  <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\in short.mp4" type="video/mp4">
+                    </video>
+                </div>
+                  <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\vikram wedding.mp4" type="video/mp4">
+                    </video>
+                </div>
+                 <div class="video-item yt-item event">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\green peace boarding school (1).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item yt-item graphical">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\madhyam 2d .mp4" type="video/mp4">
+                    </video>
+                </div>
+                 <div class="video-item yt-item graphical">
+                    <video controls playsinline webkit-playsinline>
+                        <source src="c:\Users\Admin\Desktop\big project\Lions cup cinematic.mp4" type="video/mp4">
+                    </video>
+                </div>
+            
             </div>
         </div>
     </section>
+
+
+
+
     <!-- Add this after Portfolio section -->
 <section id="education" class="education">
     <div class="container">
@@ -1446,25 +1861,28 @@ h2 {
     </footer>
     
 
-
-
-
     <script>
 
-// Intersection Observer for sections
+
+// Update section observer configuration
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Animate paragraphs within section
             const paragraph = entry.target.querySelector('.animated-paragraph');
             if (paragraph) {
-                setTimeout(() => paragraph.classList.add('visible'), 300);
+                paragraph.classList.add('visible');
+            }
+            // Add for journey card
+            if(entry.target.id === 'journey') {
+                entry.target.querySelector('.journey-card').classList.add('visible');
             }
         }
     });
-}, { threshold: 0.15 });
-
+}, { 
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px' // Adjust root margin
+});
 document.querySelectorAll('section').forEach(section => {
     sectionObserver.observe(section);
 });
@@ -1519,46 +1937,66 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Portfolio Filtering Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-buttons button');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+// New Portfolio JavaScript
+document.querySelectorAll('.filter-buttons button').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                document.querySelectorAll('.filter-buttons button').forEach(btn => 
+                    btn.classList.remove('active'));
+                button.classList.add('active');
 
-    function filterPortfolio(category) {
-        portfolioItems.forEach(item => {
-            const shouldShow = category === 'all' || item.classList.contains(category);
-            item.classList.toggle('active', shouldShow);
+                document.querySelectorAll('.video-item').forEach(item => {
+                    const isReel = item.classList.contains('reel-item');
+                    const isYt = item.classList.contains('yt-item');
+                    const isGraphical = item.classList.contains('graphical');
+                    const isEvent = item.classList.contains('event');
+
+                    let shouldShow = false;
+                    
+                    switch(filter) {
+                        case 'all': shouldShow = true; break;
+                        case 'reel': shouldShow = isReel && !isGraphical; break;
+                        case 'graphical': shouldShow = isGraphical; break;
+                        case 'event': shouldShow = isEvent; break;
+                        case 'yt': shouldShow = isYt && !isEvent && !isGraphical; break;
+                    }
+
+                    item.style.display = shouldShow ? 'block' : 'none';
+                    
+                    const reelGrid = document.querySelector('.reel-grid');
+                    const ytGrid = document.querySelector('.yt-grid');
+                    reelGrid.style.display = Array.from(reelGrid.children).some(child => 
+                        child.style.display !== 'none') ? 'grid' : 'none';
+                    ytGrid.style.display = Array.from(ytGrid.children).some(child => 
+                        child.style.display !== 'none') ? 'grid' : 'none';
+                });
+            });
         });
-    }
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            filterPortfolio(button.dataset.filter);
+        document.querySelectorAll('.reel-item .fullscreen-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const video = button.closest('.reel-item').querySelector('video');
+                if (!document.fullscreenElement) {
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    } else if (video.webkitRequestFullscreen) {
+                        video.webkitRequestFullscreen();
+                    } else if (video.msRequestFullscreen) {
+                        video.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            });
         });
-    });
-
-    filterPortfolio('all');
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    function checkScroll() {
-        const journeyCard = document.querySelector('.journey-card');
-
-        if (journeyCard) {
-            const cardTop = journeyCard.getBoundingClientRect().top;
-            const cardTrigger = window.innerHeight * 0.9;
-            if (cardTop < cardTrigger) {
-                journeyCard.classList.add('visible');
-            }
-        }
-    }
-
-    window.addEventListener("scroll", checkScroll);
-    checkScroll(); // Run on page load
-});
-  
+        // End of New Portfolio JavaScript
 
 
 
@@ -1716,7 +2154,90 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => successContainer.style.display = 'none', 5000);
     }
 });
-  </script>
-</body>
-</html>
 
+
+
+// Skill item touch handling
+document.querySelectorAll('.skill-item').forEach(item => {
+    let touchTimer;
+    
+    const handleTouch = (e) => {
+        e.preventDefault();
+        clearTimeout(touchTimer);
+        
+        // Remove active class from all items
+        document.querySelectorAll('.skill-item').forEach(i => i.classList.remove('active'));
+        
+        // Add active class to touched item
+        item.classList.add('active');
+        
+        // Remove active class after animation completes
+        touchTimer = setTimeout(() => {
+            item.classList.remove('active');
+        }, 600); // Matches 0.6s transition duration
+    };
+
+    if ('ontouchstart' in window) {
+        // Mobile touch events
+        item.addEventListener('touchstart', handleTouch);
+        item.addEventListener('touchend', (e) => e.preventDefault());
+    } else {
+        // Desktop hover events
+        item.addEventListener('mouseenter', () => item.classList.add('hover'));
+        item.addEventListener('mouseleave', () => item.classList.remove('hover'));
+    }
+});
+
+
+  // Initialize modal as closed
+  document.getElementById('cvModal').style.display = 'none';
+
+  function openModal() {
+    document.getElementById('cvModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('cvModal').style.display = 'none';
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('cvModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  // Close with ESC key
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('cvModal');
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
+ function openModal() {
+    document.getElementById('cvModal').style.display = 'block';
+    // Don't disable body scroll — so user can scroll page behind modal
+  }
+
+  function closeModal() {
+    document.getElementById('cvModal').style.display = 'none';
+  }
+
+  // Close modal when clicking outside modal-content
+  window.onclick = function(event) {
+    const modal = document.getElementById('cvModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  };
+
+  // Close with ESC key
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('cvModal');
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+
+    </script>
