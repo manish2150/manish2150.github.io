@@ -768,11 +768,12 @@ footer {
 
 /* Mobile-specific touch interactions */
 @media (max-width: 768px) {
-    /* Disable hover effects on mobile */
+    /* Enable hover/tap effects */
     .skill-item:hover img {
-        transform: none;
-        filter: grayscale(100%);
+        filter: grayscale(0%);
+        transform: rotate(360deg);
     }
+}
     
     /* Active state for touched items */
     .skill-item.active {
@@ -1446,6 +1447,34 @@ h2 {
         padding: 10px 20px;
       }
     }
+
+
+
+
+
+    .message {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.watch-button {
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(238, 9, 121, 0.4);
+  transition: all 0.25s ease;
+}
+
+.watch-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(238, 9, 121, 0.5);
+}
 </style>
 
 
@@ -1480,7 +1509,7 @@ h2 {
         <div class="container">
             <h2>About Me</h2><br>
             <div class="about-content">
-            <img src="https://raw.githubusercontent.com/manish2150/manish2150.github.io/main/manish.jpg"alt="Your Name">
+            <img src="https://github.com/manish2150/manish2150.github.io/blob/main/manish.jpg"alt="Your Name">
                 <p>Hi, I’m Manish Bhandari from Nepal, an 18-year-old passionate video editor with four years of experience. I specialize in long-format videos but also work on reels and short-form content. 
                     I love bringing stories to life through the art of video editing, transforming raw footage into engaging and impactful visuals.</p>
                     
@@ -1579,43 +1608,43 @@ h2 {
             <div class="reel-grid">
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\piuro lassi report.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/piuro%20lassi%20report.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item graphical">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\madhyam graphicall.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/madhyam%20graphicall.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\king ad re.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/king%20ad%20re.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\lions final day.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/lions%20final%20day.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\rohit rana dynasty.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/rohit%20rana%20dynasty.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\Birtha academy  (1)-.mp4" type="video/mp4">
+                    <source src="https://github.com/manish2150/bigfile/blob/main/Birtha%20academy%20%20(1)-.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
                 <div class="video-item reel-item">
                   <video controls playsinline webkit-playsinline>
-                    <source src="c:\Users\Admin\Desktop\big project\piuro solution 1.mp4" type="video/mp4">
+                    <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/piuro%20solution%201.mp4" type="video/mp4">
                   </video>
                   <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button> <!-- ✅ Moved outside the <video> -->
                 </div>
@@ -1633,55 +1662,68 @@ h2 {
             <div class="yt-grid">
                 <div class="video-item yt-item">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\EMONN RAPP.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/EMONN%20RAPP.mp4" type="video/mp4">
                     </video>
                 </div>
                  <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\lions horizontal (rc).mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/lions%20horizontal%20(rc).mp4" type="video/mp4">
                     </video>
                 </div>  
                  <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\LG PROMOO.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/LG%20PROMOO.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\event .mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/event%20.mp4" type="video/mp4">
                     </video>
                 </div>
                   <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\in short.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/bartabanda%20edit%20in%20short.mp4" type="video/mp4">
                     </video>
                 </div>
                   <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\vikram wedding.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/vikram%20wedding.mp4" type="video/mp4">
                     </video>
                 </div>
                  <div class="video-item yt-item event">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\green peace boarding school (1).mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/green%20peace%20boarding%20school%20(1).mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="video-item yt-item graphical">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\madhyam 2d .mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/madhyam%202d%20.mp4" type="video/mp4">
                     </video>
                 </div>
                  <div class="video-item yt-item graphical">
                     <video controls playsinline webkit-playsinline>
-                        <source src="c:\Users\Admin\Desktop\big project\Lions cup cinematic.mp4" type="video/mp4">
+                        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/Lions%20cup%20cinematic.mp4" type="video/mp4">
                     </video>
                 </div>
             
             </div>
+
+
+
         </div>
     </section>
+    <hr><br>
+        <div class="container">
+    <center><p class="message"><b>To watch the video in a more easier way</b></p>
+    <button class="watch-button" onclick="redirectToDrive()">Click Me</button>
+  </div></center>
 
-
+  <script>
+    function redirectToDrive() {
+      window.location.href = "https://drive.google.com/drive/u/2/folders/1wWGwagmtjdqyP5pY7mzmIIY5bQqPCQHE";
+    }
+  </script>
+<br><br>
 
 
     <!-- Add this after Portfolio section -->
