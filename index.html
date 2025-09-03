@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Add these meta tags -->
-<meta http-equiv="Content-Security-Policy" content="child-src https://drive.google.com">
-<meta name="referrer" content="no-referrer">
+    <title>Alish Bhandari | Professional Video Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Load Poppins Narrow font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins+Narrow:wght@600&display=swap" rel="stylesheet">
+<!-- Load Roboto Condensed font -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 
-    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-    <input type="text" name="honeypot" style="display:none;">
-    <title>Manish Bhandari</title>
     <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff5e62;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -19,2265 +28,3170 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-
+        /* Navigation */
         .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: linear-gradient(135deg, #2c3e50, #3498db);
-        padding: 1rem 2rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-    }
-
-    .logo {
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 700;
-        text-decoration: none;
-        transition: transform 0.3s ease;
-        margin-left: 2rem; /* Added left margin for desktop */
-    }
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links li {
-            position: relative;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #e74c3c;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::before {
+            position: fixed;
+            top: 0;
             width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
 
-        .nav-links a:hover {
-            color: #ecf0f1;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             font-size: 1.8rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
         }
 
-        .hamburger:hover {
-            transform: rotate(90deg);
-        }
+      .hamburger {
+    display: flex;              /* Show as flex to center items */
+    flex-direction: column;     /* Stack the lines vertically */
+    justify-content: center;    /* Center the lines vertically */
+    align-items: center;        /* Center the lines horizontally */
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 2000;
+    padding: 0;
+        position: fixed; /* or absolute */
+    right: 30PX;     /* keep some space from right edge */
+}
 
-       @media (max-width: 768px) {
-    .navbar {
-        padding: 0.8rem;
-    }
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: var(--light);
+    margin: 4px 0;
+    transition: var(--transition, 0.3s ease);
+    border-radius: 3px;
+}
+/* Hide hamburger by default (desktop) */
+.hamburger {
+  display: none;
+}
 
-    .nav-links {
-        position: fixed;
-        top: 50px; /* Reduced from 60px */
-        right: -100%;
-        flex-direction: column;
-        background: linear-gradient(135deg, #2c3e50, #3498db);
-        width: 65%; /* Increased for better fit on small devices */
-        max-height: 80vh; /* Avoids overflow beyond screen height */
-        overflow-y: auto; /* Allows scrolling if needed */
-        text-align: center;
-        padding: 1rem;
-        border-radius: 0 0 0 20px;
-        box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .logo {
-        margin-left: 0;
-        font-size: 1.1rem;
-    }
-
-    .nav-links li {
-        margin: 0.7rem 0;
-    }
-
-    .nav-links a {
-        font-size: 0.95rem; /* Smaller text for better fit */
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .nav-links a::before {
-        display: none;
-    }
-
-    .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.15);
-    }
+/* Show hamburger on small screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    position: fixed; /* or absolute as you prefer */
+    right: 30px;
+  }
 }
 
 
-        /* Animation for menu items */
-        @keyframes slideIn {
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 100%;
+            max-width: 300px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 100px 30px 30px;
+            z-index: 1500;
+            transition: var(--transition);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-links {
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .sidebar-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .sidebar-links a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 5% 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+        }
+
+        .powerline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.2s forwards 0.5s;
+            background: linear-gradient(45deg, #ff5e62, #ff9966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-points {
+            margin: 2rem 0;
+        }
+
+        .point {
+            font-size: 1.4rem;
+            margin: 1.2rem 0;
+            opacity: 0;
+            transform: translateX(-100px);
+            animation: slideInRight 0.8s forwards;
+        }
+
+        .point:nth-child(1) { animation-delay: 1.2s; }
+        .point:nth-child(2) { animation-delay: 1.6s; }
+        .point:nth-child(3) { animation-delay: 2s; }
+        .point:nth-child(4) { animation-delay: 2.4s; }
+
+        .ending-message {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards 2.8s;
+            color: #a9e4f9;
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            flex: 1;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .profile-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover img {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-img:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--secondary);
+            top: 20px;
+            left: 20px;
+            border-radius: 20px;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .profile-img:hover:before {
+            top: 15px;
+            left: 15px;
+        }
+
+        .about-text {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(100px);
+            text-decoration: none;
+              text-align: justify;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff9966;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+         /* Companies Section */
+        .companies-container {
+            margin-top: 30px;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        .companies-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 0 0 40px 0;
+            color: #a5b4fc;
+            position: relative;
+        }
+        
+        .companies-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .companies {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        
+        .company {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .company.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .company:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+        
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #93c5fd;
+            transition: var(--transition);
+            overflow: hidden;
+            padding: 8px;
+        }
+        
+        .company:hover .company-logo {
+            transform: scale(1.1);
+            background: rgba(59, 130, 246, 0.2);
+        }
+        
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .company-name {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #e2e8f0;
+            font-weight: 500;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(20px);
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes logoFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .company {
+            animation: logoFloat 5s infinite ease-in-out;
+        }
+        
+        .company:nth-child(1) { animation-delay: 0.2s; }
+        .company:nth-child(2) { animation-delay: 0.4s; }
+        .company:nth-child(3) { animation-delay: 0.6s; }
+        .company:nth-child(4) { animation-delay: 0.8s; }
+        .company:nth-child(5) { animation-delay: 1.0s; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .companies {
+                gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .company-logo {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .companies {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 15px;
+            }
+            
+            .company {
+                padding: 15px;
+            }
+            
+            .company-logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .companies-title {
+                font-size: 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .companies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+   
+  /* Expertise Section */
+.expertise-section {
+    padding: 50px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    position: relative;
+    color: var(--light);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.software {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-align: center;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 0;
+    max-width: 100%;
+}
+
+.software.animate {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.software:hover {
+    transform: translateY(-10px) !important;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.software-icon-container {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.software-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.6s ease, filter 0.4s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    will-change: transform;
+}
+
+.software:hover .software-icon {
+    transform: scale(1.1) rotate(360deg);
+}
+
+.software h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: var(--light);
+    z-index: 2;
+}
+
+.software p {
+    font-size: 0.8rem;
+    color: #aaa;
+    z-index: 2;
+    line-height: 1.4;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay animations */
+.software:nth-child(1).animate { animation-delay: 0.1s; }
+.software:nth-child(2).animate { animation-delay: 0.2s; }
+.software:nth-child(3).animate { animation-delay: 0.3s; }
+.software:nth-child(4).animate { animation-delay: 0.4s; }
+.software:nth-child(5).animate { animation-delay: 0.5s; }
+.software:nth-child(6).animate { animation-delay: 0.6s; }
+.software:nth-child(7).animate { animation-delay: 0.7s; }
+.software:nth-child(8).animate { animation-delay: 0.8s; }
+
+/* Top border animation */
+.software::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.software:hover::before {
+    transform: scaleX(1);
+}
+@media (max-width: 600px) {
+    .expertise-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+    .software {
+        padding: 18px 10px;
+        min-width: 0; /* VERY IMPORTANT */
+        width: 100%; /* Ensures it doesn't overflow */
+        box-sizing: border-box; /* Prevents content from expanding box */
+    }
+
+    .software-icon-container {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 12px;
+    }
+
+    .software-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .software h3 {
+        font-size: 1rem;
+    }
+
+    .software p {
+        font-size: 0.75rem;
+    }
+
+
+@media (max-width: 400px) {
+    .expertise-grid {
+        grid-template-columns: repeat(2, 1fr); /* Still keep 2 per row */
+        gap: 12px;
+    }
+}
+
+           /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+        
+        .portfolio-item.reel {
+            height: 500px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: all 0.5s ease;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 30px;
+            opacity: 1;
+            transition: all 0.4s ease;
+        }
+        
+        .video-overlay h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .video-overlay p {
+            color: #ddd;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .play-button i {
+            font-size: 2rem;
+            color: white;
+            margin-left: 5px;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .portfolio-item:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Video Player Modal */
+        .video-player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .video-player.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .video-content {
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.7);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .close-button:hover {
+            color: #ff5e62;
+            transform: rotate(90deg);
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        .video-iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Special styling for reel videos */
+        .reel-format .video-iframe {
+            aspect-ratio: 9/16;
+            max-width: 400px;
+        }
+        
+        .player-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .player-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+        }
+        
+        .player-overlay::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        
+        /* Video type indicators */
+        .video-type {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff5e62, #ff9966);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(255, 94, 98, 0.3);
+            z-index: 10;
+        }
+        
+        .reel-type {
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+        }
+        
+        /* Fullscreen message */
+        .fullscreen-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            max-width: 90%;
+            width: 450px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .fullscreen-message.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .fullscreen-message h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ff5e62;
+        }
+        
+        .fullscreen-message p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        
+        .channel-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
+        }
+        
+        .channel-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 117, 252, 0.4);
+        }
+        
+        .channel-link i {
+            margin-left: 8px;
+        }
+        
+        /* Mobile-specific fixes */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-item, .portfolio-item.reel {
+                height: 350px;
+            }
+            
+            .close-button {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            
+            .reel-format .video-iframe {
+                max-width: 90%;
+            }
+            
+            .video-overlay {
+                padding: 20px;
+            }
+            
+            .video-overlay h3 {
+                font-size: 1.4rem;
+            }
+            
+            .fullscreen-message {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            .fullscreen-message h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-item, .portfolio-item.reel {
+                height: 300px;
+            }
+            
+            .video-overlay h3 {
+                font-size: 1.2rem;
+            }
+            
+            .video-overlay p {
+                font-size: 0.9rem;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-button i {
+                font-size: 1.7rem;
+            }
+            
+            .fullscreen-message h3 {
+                font-size: 1.3rem;
+            }
+            
+            .fullscreen-message p {
+                font-size: 1rem;
+            }
+            
+            .channel-link {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Filter buttons */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ddd;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(45deg, #2575fc, #6a11cb);
+            color: white;
+        }
+        /* Education Section */
+        .education-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .education-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .edu-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    overflow: hidden; /* ensures image stays inside circle */
+    padding: 5px;
+}
+.edu-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+        .education-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .education-item p {
+            margin-bottom: 10px;
+        }
+
+        /* Story Section */
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 20, 0.95);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transform: translateY(-10px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
 
-        .nav-links li {
-            animation: slideIn 0.4s ease forwards;
-            opacity: 0;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
-        .nav-links li:nth-child(1) { animation-delay: 0.1s; }
-        .nav-links li:nth-child(2) { animation-delay: 0.2s; }
-        .nav-links li:nth-child(3) { animation-delay: 0.3s; }
-        .nav-links li:nth-child(4) { animation-delay: 0.4s; }
+        .animate {
+            animation: fadeInUp 1s forwards;
+        }
 
+        .animate-left {
+            animation: slideInRight 1s forwards;
+        }
 
+        .animate-right {
+            animation: slideInRight 1s forwards;
+        }
 
+        .animate-scale {
+            animation: fadeInUp 0.8s forwards, scaleUp 0.8s forwards;
+        }
 
+        @keyframes scaleUp {
+            to {
+                transform: scale(1);
+            }
+        }
 
-        section {
-    padding: 5rem 2rem; /* Reduced from 5rem */
-    min-height: 90vh; /* Remove 100vh constraint */
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
+        /* ========================= */
+        /* RESPONSIVE DESIGN UPDATES */
+        /* ========================= */
+        
+        /* Mobile Navigation Fixes */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* Mobile Devices (max-width: 768px) */
+        @media (max-width: 768px) {
+            /* Navigation */
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .sidebar {
+                max-width: 280px;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding-top: 80px;
+            }
+            
+            .powerline {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .point {
+                font-size: 1.1rem;
+                margin: 1rem 0;
+            }
+            
+            .ending-message {
+                font-size: 1.2rem;
+            }
+            
+            /* About Section */
+            .section {
+                padding: 80px 5%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .profile-img, .about-text {
+                flex: none;
+                width: 100%;
+                max-width: 100%;
+                transform: none;
+            }
+            
+            .about-text h3 {
+                font-size: 1.7rem;
+            }
+            
+            /* Companies */
+            .companies {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 20px;
+            }
+            
+            .company-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Expertise Grid */
+            .expertise-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .software {
+                padding: 20px 15px;
+            }
+            
+            .software i {
+                font-size: 2.5rem;
+            }
+            
+            .software h3 {
+                font-size: 1.2rem;
+            }
+            
+            /* Portfolio Grid */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-item {
+                height: 250px;
+            }
+            
+            .portfolio-item.reel {
+                height: 400px;
+            }
+            
+            .video-overlay {
+                padding: 20px;
+            }
+            
+            .video-overlay h3 {
+                font-size: 1.4rem;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-button i {
+                font-size: 1.8rem;
+            }
+            
+            /* Education */
+            .education-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .education-item {
+                padding: 30px;
+                max-width: 100%;
+            }
+            
+            .edu-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            /* Story */
+            .story-content {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+            
+            /* Contact */
+            .contact-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .info-item {
+                margin-bottom: 20px;
+            }
+            
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            /* Footer */
+            .social-links {
+                gap: 15px;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Small Mobile Devices (max-width: 480px) */
+        @media (max-width: 480px) {
+            /* Navigation */
+            .navbar {
+                padding: 0.8rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .sidebar {
+                max-width: 250px;
+                padding: 80px 20px 20px;
+            }
+            
+            .sidebar-links a {
+                font-size: 1.1rem;
+            }
+            
+            /* Hero Section */
+            .powerline {
+                font-size: 1.8rem;
+            }
+            
+            .point {
+                font-size: 1rem;
+            }
+            
+            .ending-message {
+                font-size: 1.1rem;
+            }
+            
+            /* About Section */
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+            
+            /* Companies */
+            .companies {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .company {
+                padding: 15px;
+            }
+            
+            .company-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .company-name {
+                font-size: 0.8rem;
+            }
+            
+            /* Expertise Grid */
+            .expertise-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 20px;
+            }
+            
+            .software {
+                padding: 15px 10px;
+            }
+            
+            .software i {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .software h3 {
+                font-size: 1.1rem;
+            }
+            
+            /* Portfolio */
+            .portfolio-item {
+                height: 220px;
+            }
+            
+            .portfolio-item.reel {
+                height: 350px;
+            }
+            
+            .video-overlay h3 {
+                font-size: 1.2rem;
+            }
+            
+            .video-overlay p {
+                font-size: 0.9rem;
+            }
+            
+            /* Education */
+            .education-item {
+                padding: 25px;
+            }
+            
+            .edu-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
+            .education-item h3 {
+                font-size: 1.3rem;
+            }
+            
+            /* Contact */
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .form-group input, 
+            .form-group textarea {
+                padding: 12px;
+            }
+            
+            .submit-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
 
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: white;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    animation: slideIn 0.8s ease;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    animation: slideIn 0.8s ease 0.2s forwards;
-    opacity: 0;
-}
-
-.hero .btn {
+  .ending-message1 {
+    font-weight: bold;
+    font-size: 34px;
+    background: linear-gradient(90deg, #ff9966, #ff5e62);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     display: inline-block;
-    padding: 1rem 2.5rem;
-    background: #e74c3c;
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    animation: slideIn 0.8s ease 0.4s forwards;
-    opacity: 0;
-}
-
-.hero .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* About Section */
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.about-content img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.about-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
-}
-
-
-/*skill*/
-.skills {
-    background: #f9f9f9;
-    overflow: hidden;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem 0;
-}
-
-.skill-item {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 0;
-    transform: translateX(-50px);
-}
-
-.skill-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.skill-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
-}
-
-.skill-item img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    transition: all 0.3s ease;
-}
-
-.skill-item:hover img {
-    filter: grayscale(0%);
-    transform: rotate(360deg);
-}
-
-.skill-item span {
-    font-weight: 700;
-    color: #2c3e50;
-    position: relative;
-}
-
-.skill-item span::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #3498db;
-    transition: width 0.3s ease;
-}
-
-.skill-item:hover span::after {
-    width: 100%;
-}
-
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .skill-item {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.2rem;
-        gap: 0.8rem;
-    }
-    
-    .skill-item img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .skills-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-/* Animation */
-@keyframes skillEntrance {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-
-
-/* Portfolio Section - Full CSS */
-.portfolio {
-    padding: 4rem 0;
-    position: relative;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Filter Buttons */
-.filter-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.filter-buttons button {
-    padding: 0.8rem 2rem;
-    border: none;
-    background: #f0f0f0;
-    color: #333;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
-
-.filter-buttons button.active,
-.filter-buttons button:hover {
-    background: #3498db;
-    color: white;
-}
-
-/* New Portfolio Styles */
-.portfolio {
-    padding: 2rem 1rem;
-}
-
-.filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.filter-buttons button {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid #007bff;
-    background: white;
-    color: #007bff;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-buttons button.active {
-    background: #007bff;
-    color: white;
-}
-
-.video-grid {
-    display: grid;
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.reel-grid,
-.yt-grid {
-    display: grid;
-    gap: 1rem;
-    width: 100%;
-    justify-content: center;
-    justify-items: center;
-    padding: 0 1rem;
-}
-
-@media (max-width: 480px) {
-    .reel-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-    }
-    .yt-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .reel-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .yt-grid {
-        grid-template-columns: repeat(2, minmax(300px, 400px));
-    }
-}
-
-@media (min-width: 769px) {
-    .reel-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1200px;
-        gap: 1.5rem;
-        margin: 0 auto 2rem;
-    }
-
-    .yt-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 1200px;
-        gap: 2rem;
-    }
-}
-
-.video-item {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background: black;
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-width: 100%;
-}
-
-.video-item:hover {
-    transform: scale(1.02);
-    z-index: 1;
-}
-
-.reel-item {
-    aspect-ratio: 9 / 16;
-}
-
-.yt-item {
-    aspect-ratio: 16 / 9;
-}
-
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    background: black;
-    border-radius: 10px;
-}
-
-.filter-buttons button[data-filter="graphical"] {
-    border-color: #4CAF50;
-    color: #4CAF50;
-}
-.filter-buttons button[data-filter="graphical"].active {
-    background: #4CAF50;
-    color: white;
-}
-.filter-buttons button[data-filter="event"] {
-    border-color: #9C27B0;
-    color: #9C27B0;
-}
-.filter-buttons button[data-filter="event"].active {
-    background: #9C27B0;
-    color: white;
-}
-
-.fullscreen-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    padding: 4px 6px;
-    font-size: 16px;
-    cursor: pointer;
-    z-index: 10;
-    display: none;
-}
-
-@media (max-width: 480px) {
-    .fullscreen-btn {
-        display: block;
-    }
-}
-/* End of New Portfolio Styles */
-
-
-/* Contact Section */
-
-#contact {
-    padding: 2rem 0 !important; /* Add important to override */
-}
-
-.contact .container {
-    max-width: 800px; /* Increased container width */
-    margin: 0 auto;
-    padding: 0 20px; /* Added horizontal padding */
-}
-
-#contact.section {
-    padding: -10rem -12rem; /* Reduced from 5rem */
-    min-height: auto; /* Remove 100vh constraint */
-}
-
-
-form {
-    width: 100%; /* Full width of container */
-    margin: 0 auto;
-    display: grid;
-    gap: 1.8rem;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 1.4rem;  /* Increased padding */
-    border: 2px solid #eee;
-    border-radius: 10px;  /* Slightly larger radius */
-    font-size: 1.1rem;  /* Larger font size */
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    line-height: 1.6;  /* Better text spacing */
-}
-
-textarea {
-    min-height: 160px;  /* Taller textarea */
-    resize: vertical;  /* Allow vertical resize only */
-}
-
-input:focus, textarea:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
-}
-
-form button {
-    background: #3498db;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-form button:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-}
-
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .contact .container {
-        padding: 0 15px;
-    }
-    
-    input, textarea {
-        padding: 1.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    input, textarea {
-        padding: 1rem;
-    }
-}
-
-
-/* Footer */
-footer {
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-}
-
-.social-links {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-}
-
-.social-links a {
-    color: white;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.social-links a:hover {
-    color: #3498db;
-    transform: translateY(-3px);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .filter-buttons {
-        flex-wrap: wrap;
-    }
-    
-    section {
-        padding: 4rem 1rem;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Skills Description */
-
-
-
-.skills-description {
-    max-width: 800px;
-    margin: 3rem auto 0;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-    text-align: justify;
-}
-
-.animated-paragraph {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #2c3e50;
-    text-align: center;
-    text-align: justify;
-    position: relative;
-    z-index: 1;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.6s ease;
-}
+    animation: fadeRiseIn 1s ease forwards 3s, shake 2s infinite 4s;
+  }
 
-.animated-paragraph.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+  .ending-message img {
+    height: 26px;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
 
-.skills-description::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #3498db22, #e74c3c11);
-    z-index: 0;
-}
-
-@media (max-width: 768px) {
-    .skills-description {
-        margin: 2rem 1rem 0;
-        padding: 1.5rem;
-    }
-    
-    .animated-paragraph {
-        font-size: 1rem;
-        text-align: left;
-    }
-}
-
-
-/* Skill Item Hover Effects */
-.skill-item:hover img {
-    filter: grayscale(0%);
-    transform: rotate(360deg);
-}
-
-/* Mobile-specific touch interactions */
-@media (max-width: 768px) {
-    /* Enable hover/tap effects */
-    .skill-item:hover img {
-        filter: grayscale(0%);
-        transform: rotate(360deg);
-    }
-}
-    
-    /* Active state for touched items */
-    .skill-item.active {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-    
-    .skill-item.active img {
-        filter: grayscale(0%);
-        transform: rotate(360deg);
-        transition: all 0.6s ease; /* Match rotation duration */
-    }
-    
-    /* Base state transition */
-    .skill-item img {
-        transition: all 0.6s ease;
-    }
-}
-
-
-/* Mobile-specific rotation with touch */
-@media (max-width: 768px) {
-    .skill-item.active img {
-        filter: grayscale(0%);
-        transform: rotate(360deg);
-        transition: all 0.3s ease;
-    }
-    
-    .skill-item.active {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-}
-
-/* Compact Social Connections */
-.connect-container {
-    padding: 1.5rem 0 2rem;
-}
-
-.connect-heading {
-    text-align: center;
-    margin-bottom: 1.2rem;
-    font-size: 1.8rem;
-    color: #2c3e50;
-}
-
-.compact-socials {
-    display: flex;
-    justify-content: center;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-}
-
-.compact-socials a {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    color: white;
-}
-
-/* Brand Colors */
-.linkedin { background: #0A66C2; }
-.whatsapp { background: #25D366; }
-.facebook { background: #1877F2; }
-.instagram { background: linear-gradient(45deg, #f09433, #dc2743, #cc2366); }
-.youtube { background: #FF0000; }
-
-/* Hover Effects */
-.compact-socials a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .connect-container {
-        padding: 1rem 0 1.5rem;
-    }
-    
-    .connect-heading {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .compact-socials {
-        gap: 1rem;
-    }
-    
-    .compact-socials a {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .compact-socials {
-        gap: 0.8rem;
-    }
-    
-    .compact-socials a {
-        width: 32px;
-        height: 32px;
-    }
-}
-
-
-/* Education Section */
-.education {
-    background: #f8f9fa;
-    padding-bottom: -1rem !important;
-    padding: 3rem 0;  /* Reduced from 4rem */
-}
-
-
-.education-timeline {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.education-item {
-    background: white;
-    padding: 2rem;
-    margin: 2rem 0;
-    border-radius: 15px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.education-item:hover {
-    transform: translateY(-5px);
-}
-
-.edu-logo {
-    flex: 0 0 80px;
-}
-
-.edu-logo img {
-    width: 100%;
-    height: auto;
-    max-height: 80px;
-    object-fit: contain;
-}
-
-.edu-details h3 {
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-}
-
-.institute {
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-}
-
-.duration {
-    color: #7f8c8d;
-    font-size: 0.9rem;
-}
-
-.current {
-    border-left: 4px solid #3498db;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .education-item {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-    }
-    
-    .edu-logo {
-        margin-bottom: 1rem;
-    }
-    
-    .current {
-        border-left: none;
-        border-top: 4px solid #3498db;
-    }
-}
-
-@media (max-width: 480px) {
-    .education {
-        padding: 2rem 0;
-    }
-    
-    .edu-details h3 {
-        font-size: 1.1rem;
-    }
-    
-    .institute {
-        font-size: 0.9rem;
-    }
-}
-
-
-
-
-.story-section {
-    margin-top: -2rem; /* Increased negative margin */
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.container {
-    width: 90%;
-    max-width: 1000px;
-}
-
-.journey-card {
-    height: 0%;
-    width: 100%;
-    padding: 2.5rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-    text-align: center;
-}
-
-.journey-card:hover {
-    transform: translateY(-5px);
-}
-
-.journey-content {
-    position: relative;
-}
-
-h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-}
-
-.story-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
-    text-align: justify;
-}
-
-.fun-fact {
-    background: #fff9e6;
-    padding: 1.2rem;
-    border-radius: 10px;
-    border-left: 4px solid #ffd700;
-    font-style: italic;
-    color: #6b533b;
-    margin-top: 1.5rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-    
-    .journey-card {
-        padding: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.6rem;
-    }
-    
-    .story-text {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-    
-    .fun-fact {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .story-section {
-        padding: 2rem 0;
-    }
-    
-    .journey-card {
-        padding: 1.5rem;
-    }
-    
-    h2 {
-        font-size: 1.4rem;
-    }
-    
-    .story-text {
-        font-size: 0.95rem;
-    }
-    
-    .fun-fact {
-        font-size: 0.9rem;
-    }
-}
-
-/* Fade-in Animation */
-.journey-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.journey-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-
-
-
-
-
-
-
-
-
- /* FAQ Section */
- .faq-section {
-      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-      padding: 1rem 0 0.5rem; /* Reduced vertical padding */
-
-    padding-bottom: 2rem; /* Reduce bottom padding */
-}
-    
-    .faq-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #2c3e50;
-    }
-    .faq-grid {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .faq-item {
-      background: #fff;
-      border-radius: 12px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .faq-item.visible {
+  @keyframes fadeRiseIn {
+    to {
       opacity: 1;
       transform: translateY(0);
     }
-    .faq-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-    .faq-question {
-      width: 100%;
-      padding: 1.5rem 2rem;
-      border: none;
-      background: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #2c3e50;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .faq-question:hover {
-      background: #f0f0f0;
-    }
-    .faq-question i {
-      font-size: 1.2rem;
-      transition: transform 0.3s ease;
-      margin-left: 1rem;
-    }
-    .faq-question[aria-expanded="true"] i {
-      transform: rotate(180deg);
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-    }
-    .faq-answer p {
-      padding: 0 2rem 1.5rem;
-      line-height: 1.7;
-      color: #4a5568;
-      margin: 0;
-    }
-    .faq-item.active .faq-answer {
-      max-height: 300px; /* Adjust based on your content */
-      padding: 1rem 0;
-    }
+  }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .faq-question {
-        padding: 1.2rem 1.5rem;
-        font-size: 1rem;
-      }
-      .faq-answer p {
-        padding: 0 1.5rem 1rem;
-      }
-    }
+   @keyframes shake {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(1px, -1px); }
+    40% { transform: translate(-1px, 1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(-1px, -1px); }
+    100% { transform: translate(0, 0); }
+  }
+
+    footer {
+  background: rgba(255, 255, 255, 0.05); /* transparent water-like */
+    border-radius: 30px; /* round on all corners */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 -8px 20px rgba(78, 21, 209, 0.3);
+     z-index: 10;
+    text-align: center;
+    color: #ffffff;
+    border-top: 1px solid rgba(55, 21, 180, 0.1);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+              /* Animation */
+  animation: waveFloat 6s ease-in-out infinite;
+  transform-origin: center bottom;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+        }
+        :root {
+  --wave-color-1: rgba(255, 255, 255, 0.07);
+  --wave-color-2: rgba(255, 255, 255, 0.1);
+  --wave-color-3: rgba(255, 255, 255, 0.05);
+  --footer-bg: rgba(255, 255, 255, 0.05);
+  --footer-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Wavy floating keyframes */
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+/* Wave effect on hover/touch for the entire footer */
+footer:hover,
+footer:focus-within {
+  animation: waveHover 0.6s ease forwards;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Wave effect keyframe for hover */
+@keyframes waveHover {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* For icons inside footer - add wave effect on hover/touch */
+footer .icon, /* or your actual icon selector */
+footer a:hover,
+footer a:focus {
+  animation: waveIcon 0.6s ease forwards;
+}
+
+@keyframes waveIcon {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+        .footer-content {
+            
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            border-color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .copyright {
+                font-size: 0.85rem;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .copyright {
+                font-size: 0.8rem;
+            }
+        }
+
+             /* Compact Alternate View */
+        .alternate-view {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+            max-width: 1000px;
+            width: 95%;
+        }
+        
+        .alternate-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .alternate-view h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            font-weight: 700;
+        }
+        
+        .alternate-view p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .watch-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .watch-option {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .watch-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0.8;
+        }
+        
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            transition: transform 0.3s ease;
+        }
+        
+        .youtube-option .option-icon {
+            color: #ff4e45;
+        }
+        
+        .drive-option .option-icon {
+            color: #34a853;
+        }
+        
+        .watch-option:hover .option-icon {
+            transform: scale(1.1);
+        }
+        
+        .watch-option h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            font-weight: 600;
+        }
+        
+        .watch-option p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-width: 220px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+            font-size: 1.3rem;
+        }
+        
+        .btn-youtube {
+            background: linear-gradient(90deg, #ff4e45, #e60000);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .btn-youtube:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        }
+        
+        .btn-drive {
+            background: linear-gradient(90deg, #34a853, #0f9d58);
+            color: white;
+            box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3);
+        }
+        
+        .btn-drive:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 168, 83, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .watch-options {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+            
+            .watch-option {
+                max-width: 500px;
+                padding: 25px 20px;
+            }
+            
+            .alternate-view h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .alternate-view {
+                padding: 30px 15px;
+            }
+            
+            .alternate-view h2 {
+                font-size: 1.6rem;
+            }
+            
+            .alternate-view p {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .watch-option {
+                padding: 22px 18px;
+            }
+            
+            .watch-option h3 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                min-width: 200px;
+                padding: 10px 20px;
+                font-size: 1rem;
+                height: 46px;
+            }
+            
+            .option-icon {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .alternate-view h2 {
+                font-size: 1.5rem;
+            }
+            
+            .alternate-view p {
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 240px;
+            }
+        }
 
 
+/* Enhanced Social Links */
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 52, 119, 0.2);
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-links a:hover::before {
+            opacity: 1;
+        }
+        
+        .social-links a:hover i {
+            color: white;
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        /* Individual social media colors */
+        .social-links a.facebook {
+            background: rgba(59, 89, 152, 0.8);
+        }
+        
+        .social-links a.facebook:hover {
+            background: #3b5998;
+        }
+        
+        .social-links a.instagram {
+            background: rgba(225, 48, 108, 0.8);
+        }
+        
+        .social-links a.instagram:hover {
+            background: #e1306c;
+        }
+        
+        .social-links a.whatsapp {
+            background: rgba(37, 211, 102, 0.8);
+        }
+        
+        .social-links a.whatsapp:hover {
+            background: #25d366;
+        }
+        
+        .social-links a.twitter {
+            background: rgba(29, 161, 242, 0.8);
+        }
+        
+        .social-links a.twitter:hover {
+            background: #1da1f2;
+        }
+        
+        .social-links a.youtube {
+            background: rgba(255, 0, 0, 0.8);
+        }
+        
+        .social-links a.youtube:hover {
+            background: #ff0000;
+        }
+        
+
+
+
+.animated-background .icon {
+    position: absolute;
+    width: 70px;
+    opacity: 0.3;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.icon1 { animation: riseWave1 20s linear infinite; left: 5%; }
+.icon2 { animation: riseWave2 22s linear infinite; left: 20%; }
+.icon3 { animation: riseWave3 18s linear infinite; left: 50%; }
+.icon4 { animation: riseWave4 24s linear infinite; left: 75%; }
+
+@keyframes riseWave1 {
+    0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+    25%  { transform: translateY(75vh) translateX(10px) rotate(25deg); opacity: 0.3; }
+    50%  { transform: translateY(50vh) translateX(-15px) rotate(45deg); opacity: 0.6; }
+    75%  { transform: translateY(25vh) translateX(12px) rotate(70deg); opacity: 0.5; }
+    100% { transform: translateY(-20vh) translateX(-8px) rotate(90deg); opacity: 0; }
+}
+
+@keyframes riseWave2 {
+    0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+    25%  { transform: translateY(80vh) translateX(-12px) rotate(-20deg); opacity: 0.3; }
+    50%  { transform: translateY(55vh) translateX(15px) rotate(-45deg); opacity: 0.6; }
+    75%  { transform: translateY(30vh) translateX(-10px) rotate(-60deg); opacity: 0.5; }
+    100% { transform: translateY(-20vh) translateX(5px) rotate(-80deg); opacity: 0; }
+}
+
+@keyframes riseWave3 {
+    0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+    25%  { transform: translateY(85vh) translateX(15px) rotate(15deg); opacity: 0.3; }
+    50%  { transform: translateY(60vh) translateX(-20px) rotate(40deg); opacity: 0.6; }
+    75%  { transform: translateY(35vh) translateX(10px) rotate(65deg); opacity: 0.5; }
+    100% { transform: translateY(-20vh) translateX(-12px) rotate(90deg); opacity: 0; }
+}
+
+@keyframes riseWave4 {
+    0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+    25%  { transform: translateY(75vh) translateX(-15px) rotate(-10deg); opacity: 0.3; }
+    50%  { transform: translateY(50vh) translateX(12px) rotate(-30deg); opacity: 0.6; }
+    75%  { transform: translateY(25vh) translateX(-10px) rotate(-50deg); opacity: 0.5; }
+    100% { transform: translateY(-20vh) translateX(8px) rotate(-70deg); opacity: 0; }
+}
+
+      
+    </style>
+</head>
+<body>
+
+    <!-- Add this inside <body> but above your main content -->
+<div class="animated-background">
+    <img src="https://cdn.worldvectorlogo.com/logos/premiere-pro-cc.svg" class="icon icon1" alt="Premiere Pro">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/1051px-Adobe_After_Effects_CC_icon.svg.png" class="icon icon2" alt="After Effects">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png" class="icon icon3" alt="DaVinci Resolve">
+    <img src="https://cdn.worldvectorlogo.com/logos/blender-2.svg" class="icon icon4" alt="Blender">
+</div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="logo">AlishBhandari</div>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+           <button class="close-btn">&times;</button>
+        <ul class="sidebar-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#story">My Story</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+   <div class="overlay"></div>
    
-    /* Vision Section */
-    .vision-section {
-    padding: 0.5rem 0 2rem; /* Changed from 70rem to 2rem */
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-}
-.vision-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    padding: 2rem; /* Reduce padding */
- margin: 0; /* Negative bottom margin */
-    max-width: 800px;
-    transition: transform 0.3s ease;
-}
-
-.vision-card:hover {
-    transform: translateY(-5px);
-}
-
-.vision-content h2 {
-    color: #2c3e50;
-    margin-bottom: 1rem; /* Reduce bottom margin */
-    text-align: center;
-}
-
-.vision-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
-    text-align: justify;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .vision-card {
-        padding: 1.8rem;
-        margin: 0 1rem 1rem;
-    }
-    
-    .vision-text {
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .vision-section {
-        padding: 1.5rem 0; /* Reduce padding */
-    }
-    
-    .vision-card {
-        padding: 1.2rem;
-    }
-    
-    .vision-content h2 {
-        font-size: 1.6rem;
-    }
-    
-    .vision-text {
-        font-size: 0.95rem;
-        text-align: left;
-    }
-}
-
-
-.alert-error{
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ebccd1;
-    border-radius: 4px;
-    color: #a94442;
-    background-color: #f2dede;
-}
-
-.alert-error ul {
-    margin: 0;
-    padding-left: 20px;
-} 
-
-.success-alert {
-    background: #e8f6e9;
-    border: 1px solid #66bb6a;
-    color: #2e7d32;
-    padding: 15px 20px;
-    border-radius: 4px;
-    margin: 15px 0;
-    display: flex;
-    align-items: center; /* This ensures vertical alignment */
-    gap: 10px; /* Space between icon and text */
-}
-
-.success-alert svg {
-    width: 28px; /* Slightly larger icon */
-    height: 28px;
-    fill: #2e7d32 !important;
-    flex-shrink: 0; /* Prevent icon from shrinking */
-    display: block; /* Remove SVG default inline spacing */
-}
-
-.success-alert p {
-    margin: 0;
-    line-height: 1.5;
-    font-size: 16px; /* Match your body text size */
-}
-
-
-
-.video-warning {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    animation: blink 1s infinite;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-.video-warning {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    animation: blink 1s infinite;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.video-warning::before {
-    content: "⚠️ ";
-    color: yellow;
-    font-size: 1.2rem;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-
-     .cv-button {
-      display: block;
-      margin: 40px auto;
-      padding: 12px 24px;
-      font-size: 18px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      max-width: 200px;
-      text-align: center;
-    }
-
-    .cv-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Modal overlay */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      overflow-y: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Modified modal content */
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-      background: transparent;
-    }
-
-.modal-image {
-  width: 40px;             /* extremely small */
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
-  display: block;
-  margin: 0 auto 20px;
-  box-shadow: none;
-}
-
-
-    /* Close Button */
-    .close-btn {
-      padding: 12px 32px;
-      font-size: 16px;
-      background: #ef4444;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-top: -90px;
-      position: absolute;
-      bottom: 10px;
-    }
-
-    .close-btn:hover {
-      background: #dc2626;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    @media (max-width: 768px) {
-      .modal-image {
-        max-width: 95%;
-        max-height: 70vh;
-      }
-      .close-btn {
-        bottom: 20px;
-        padding: 10px 24px;
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .modal-image {
-        max-height: 60vh;
-      }
-      .cv-button {
-        font-size: 16px;
-        padding: 10px 20px;
-      }
-    }
-
-
-
-
-
-    .message {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
-
-.watch-button {
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #ff6a00, #ee0979);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(238, 9, 121, 0.4);
-  transition: all 0.25s ease;
-}
-
-.watch-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(238, 9, 121, 0.5);
-}
-</style>
-
-
-    <header class="navbar">
-        <a href="#" class="logo">Manish Bhandari</a>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#vision">Vision </a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
-    </header>
-
-
-
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
-            <h1>Welcome to My Video Editing Portfolio</h1>
-            <p>Showcasing my best work in video editing and production.</p>
-            <a href="#portfolio" class="btn">View My Work</a>
+        <div class="hero-content">
+            <h1 class="powerline">Congratulations! You landed at the right place</h1>
+            <div class="hero-points">
+                <p class="point">➢ Sharp, engaging, and polished edits</p>
+                <p class="point">➢ Storytelling that boosts your brand</p>
+                <p class="point">➢ Modern style with professional standards</p>
+                <p class="point">➢ Reliable delivery, no missed deadlines</p>
+            </div>
+            <p class="ending-message">Transforming your vision into cinematic reality with 4 years of editing expertise.</p>
+ <CENTER>   <br> <p class="ending-message1" style="color: #ff9966;">
+ <b>जे गर्छु, नेपालमै गर्छु। 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Flag_of_Nepal.svg/28px-Flag_of_Nepal.svg.png" 
+         alt="Nepal Flag" 
+         style="height: 20px; vertical-align: middle; margin-left: 6px;">
+  </b>
+</p><CENTER>
+
+
+
         </div>
     </section>
-    
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2><br>
-            <div class="about-content">
-            <img src="https://github.com/manish2150/manish2150.github.io/blob/main/manish.jpg"alt="Your Name">
-                <p>Hi, I’m Manish Bhandari from Nepal, an 18-year-old passionate video editor with four years of experience. I specialize in long-format videos but also work on reels and short-form content. 
-                    I love bringing stories to life through the art of video editing, transforming raw footage into engaging and impactful visuals.</p>
-                    
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="profile-img">
+                <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/mainphoto.jpg" alt="Manish Bhandari">
             </div>
-            <div class="connect-container">
-                <div class="container">
-              <br> <hr> <br>    <h2 class="connect-heading">LET'S GET CONNECTED ;)</h2>
-                    <div class="compact-socials">
-                        <a href="https://www.linkedin.com/in/manish-bhandari-24215a33b/" class="linkedin"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://wa.me/9779817186819" class="whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                          </a>
-                        <a href="https://www.facebook.com/jhateygamingofficial" class="facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/alishbhandari.2150/" class="instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@JhateyGaming" class="youtube"><i class="fab fa-youtube"></i></a>
+            <div class="about-text">
+                <h3>Alish Bhandari</h3>
+          <p><strong>🎬 Professional Video Editor in Pokhara, Nepal</strong> — I’m <strong>Alish Bhandari</strong>, an 18-year-old student with 4+ years of hands-on video editing experience. I love turning raw footage into cinematic visuals that tell powerful stories.</p>
+
+<p>Whether it’s short films, ads, YouTube content, or promotional reels, I bring a mix of creativity, technical skill, and storytelling to every project. If you’re looking for the <strong><em>best video editor in Pokhara</em></strong>, you’ve found the right place.</p>
+
+<p>✨ Fast turnaround  <br>
+✨ High-quality results  <br>
+✨ Passion for storytelling</p>
+
+<p>Let’s create something amazing together — reach me out today! 🚀</p>
+  <!-- Social Media Icons -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/jhateygamingofficial" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/flowwith.alish/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/9779817186819?text=Hello%20Alish%2C%20I%20am%20interested!" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+            </div>
+
+
+            </div>
+        </div><BR><BR>
+         <h4 class="highlighted-title scroll-reveal">STUDENT | EDITOR <br> Loves to DIRECT!</h4>
+            <STYLE>
+/* Centered gradient h4 with animation */
+.highlighted-title {
+     font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+    margin-top: 30px;
+}
+
+/* Float Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Scroll Reveal */
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+</STYLE>
+      <div class="companies-container">
+  <h3 class="companies-title">Worked with companies directly & indirectly</h3>
+  <div class="companies">
+    <div class="company">
+      <div class="company-logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxDYXqRvhb1Ao_I7VnJFPMPLtQEuup8jxXUA&s" alt="Piuro Logo" />
+      </div>
+      <div class="company-name">Piuro</div>
+    </div>
+    <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/lgass.png" alt="Laliguras Association Logo" />
+      </div>
+      <div class="company-name">Laliguras Association</div>
+    </div>
+    <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/lionss.png" alt="Lions Club Logo" />
+      </div>
+      <div class="company-name">Lions Club</div>
+    </div>
+    <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/NEOHighQualityLogo.png" alt="Economics Olympiad Logo" />
+      </div>
+      <div class="company-name">Nepal Economics Olympiad</div>
+    </div>
+      <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/HEAVENN.png" alt="Heavenly Event Management" />
+      </div>
+      <div class="company-name">Heavenly Event Management</div>
+    </div>
+      <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/KINGSSSSS.jpg" alt="Economics Olympiad Logo" />
+      </div>
+      <div class="company-name">Kings Institue</div>
+    </div>
+    <div class="company">
+      <div class="company-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/madhyamlogo.jpg" alt="Economics Olympiad Logo" />
+      </div>
+      <div class="company-name">Madhyam Nepal</div>
+    </div>
+       <div class="company">
+      <div class="company-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/11559/11559502.png" alt="Economics Olympiad Logo" />
+      </div>
+      <div class="company-name">Worked with more +15 Businesses</div>
+  </div>
+</div>
+<BR>
+    
+<!-- Add in <head> -->
+<style>
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  @keyframes riseUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .powerline1 {
+        font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: 
+      gradientShift 3s ease infinite,
+      riseUp 1s ease forwards;
+    text-align: center;
+    margin: 40px 0;
+    display: inline-block;
+  }
+
+  .container {
+    text-align: center;
+  }
+</style>
+<!-- Body content -->
+<div style="text-align: center; margin: 40px 0;">
+  <p1 class="powerline1">
+    Experience working with LOCAL, ONLINE &amp; FOREIGN CLIENTS ;)
+  </p1>
+</div>
+
+
+
+
+
+     <!-- Expertise Section -->
+    <section id="expertise" class="section">
+        <h2 class="section-title">Editing Expertise</h2>
+        <div class="expertise-grid">
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://cdn.worldvectorlogo.com/logos/premiere-pro-cc.svg" alt="Premiere Pro" class="software-icon">
+                </div>
+                <h3>Premiere Pro</h3>
+                <p>Professional video editing</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/1051px-Adobe_After_Effects_CC_icon.svg.png" alt="After Effects" class="software-icon">
+                </div>
+                <h3>After Effects</h3>
+                <p>Motion graphics & VFX</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://cdn.worldvectorlogo.com/logos/blender-2.svg" alt="Blender" class="software-icon">
+                </div>
+                <h3>Blender</h3>
+                <p>Learning!</p>
+            </div>
+                 <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/DaVinci_Resolve_Studio.png" alt="Blender" class="software-icon">
+                </div>
+                <h3>Davinci</h3>
+                <p>Professional video editing & Color Grading</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Adobe_Audition_CC_icon_%282020%29.svg/2101px-Adobe_Audition_CC_icon_%282020%29.svg.png" alt="Adobe Audition" class="software-icon">
+                </div>
+                <h3>Adobe Audition</h3>
+                <p>Audio editing & mixing</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Audacity_Logo.svg/1200px-Audacity_Logo.svg.png" alt="Audacity" class="software-icon">
+                </div>
+                <h3>Audacity</h3>
+                <p>Audio recording & editing</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://cdn.worldvectorlogo.com/logos/powerdirector.svg" alt="PowerDirector" class="software-icon">
+                </div>
+                <h3>Power<br>Director</h3>
+                <p>Efficient video production</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://static.vecteezy.com/system/resources/previews/055/030/388/non_2x/capcut-circle-icon-logo-symbol-free-png.png" alt="CapCut" class="software-icon">
+                </div>
+                <h3>CapCut</h3>
+                <p>Mobile video editing</p>
+            </div>
+            <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://i.pinimg.com/736x/13/14/da/1314dae85d677bbf6230a81d6cfee429.jpg" alt="VN" class="software-icon">
+                </div>
+                <h3>VN</h3>
+                <p>Quick social media edits</p>
+            </div>
+              <div class="software">
+                <div class="software-icon-container">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/011/912/003/small_2x/plus-sign-icon-free-png.png" alt="Blender" class="software-icon">
+                </div>
+                <h3>Others</h3>
+                <p>Filroma,BeeCut & Other Mobile Editing Sotwares.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+<section id="portfolio" class="section">
+    <h2 class="section-title">My Portfolio</h2>
+    
+    <div class="portfolio-grid">
+        <!-- Reel Format -->
+        <div class="portfolio-item reel" data-video-id="8nAA83hYBwg" data-type="reel">
+            <div class="video-type reel-type">Reel</div>
+            <div class="video-container">
+                <img src="https://img.youtube.com/vi/8nAA83hYBwg/maxresdefault.jpg" alt="Music Festival Highlights" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Fear of GOD!</h3>
+                    <p>Reel for foreign client showcasing B-rolls and smooth edits.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Reel Format -->
+        <div class="portfolio-item reel" data-video-id="Fa2zJfK_2E4" data-type="reel">
+            <div class="video-type reel-type">Reel</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/Fa2zJfK_2E4/hqdefault.jpg" alt="Music Festival Highlights" class="video-thumbnail">
+                <div class="video-overlay">
+                    <p>Reel for Nepali client mixing graphics with cool animation and sound effects.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Reel Format -->
+        <div class="portfolio-item reel" data-video-id="8JDN-2YH-OY" data-type="reel">
+            <div class="video-type reel-type">Reel</div>
+            <div class="video-container">
+                <img src="https://img.youtube.com/vi/8JDN-2YH-OY/maxresdefault.jpg" alt="Music Festival Highlights" class="video-thumbnail">
+                <div class="video-overlay">
+                    <p>Reel for Nepali client mixing graphics with cool animation and sound effects.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Reel Format -->
+        <div class="portfolio-item reel" data-video-id="yRQRLF9U2Xo" data-type="reel">
+            <div class="video-type reel-type">Graphical</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/yRQRLF9U2Xo/hqdefault.jpg" alt="Music Festival Highlights" class="video-thumbnail">
+                <div class="video-overlay">
+                    <p>Playing with motions,animation in entire video.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="EzA-ni3jgmg" data-type="regular">
+              <div class="video-type">Graphical</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/EzA-ni3jgmg/hqdefault.jpg" alt="Nature Documentary" class="video-thumbnail">
+                <div class="video-overlay">
+                      <p>Playing with motions,animation in entire video. Made for BIG SCREEN</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+    <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="6MLjm1EbOGI" data-type="regular">
+            <div class="video-type">TVC</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/6MLjm1EbOGI/hqdefault.jpg" alt="Nature Documentary" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>TVC</h3>
+                    <p>School's Television Commercial.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="dTsJvp2_3vs" data-type="regular">
+            <div class="video-type">Filmy Text Anim.</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/dTsJvp2_3vs/hqdefault.jpg" alt="Abstract Art Film" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Film Anim.</h3>
+                    <p>This text animation gives you the vibes of flim.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="lAgrYnn-t_o" data-type="regular">
+            <div class="video-type">Music Teaser</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/lAgrYnn-t_o/hqdefault.jpg" alt="Family Adventure" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Teaser</h3>
+                    <p>Teaser of a music video acc. to Client Needs.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="xw3KOJdWF_E" data-type="regular">
+            <div class="video-type">Highlight</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/xw3KOJdWF_E/hqdefault.jpg" alt="Abstract Art Film" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Event</h3>
+                    <p>Covering the entire activities in short. Event Highlight video. </p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="-9iUY-pGJaQ" data-type="regular">
+            <div class="video-type">Logo Animation</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/-9iUY-pGJaQ/hqdefault.jpg" alt="Abstract Art Film" class="video-thumbnail">
+                <div class="video-overlay">
+                    <p>This logo animation give you the feel of flim production company animation.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="G8lHlnhhlkw" data-type="regular">
+            <div class="video-type">Wedding</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/G8lHlnhhlkw/hqdefault.jpg" alt="Abstract Art Film" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Weed Showreel</h3>
+                    <p>Showing color grading, building trust that I can edit weed video too.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Regular Format -->
+        <div class="portfolio-item" data-video-id="uBEJGdVA-N8" data-type="regular">
+            <div class="video-type">Rap Music Video</div>
+            <div class="video-container">
+                <img src="https://i.ytimg.com/vi/uBEJGdVA-N8/hqdefault.jpg" alt="Abstract Art Film" class="video-thumbnail">
+                <div class="video-overlay">
+                    <h3>Rap Music Vdo.</h3>
+                    <p>Rap Music Video that content amazing transition,cuts,fx etc.</p>
+                </div>
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Player Modal -->
+    <div class="video-player">
+        <div class="video-content">
+            <div class="close-button">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="player-overlay"></div>
+            <iframe class="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+ <div class="container">
+         <!-- Alternate View Section - Perfect Alignment -->
+        <div class="alternate-view" id="alternateSection">
+            <div class="alternate-content">
+                <h2>Want to watch in an easier way?</h2>
+                <p>Access my portfolio videos directly on YouTube or on Google Drive. Downloading, redistributing, or using 
+                    these videos for personal or commercial purposes without permission is strictly prohibited.</p>
+                
+                <div class="watch-options">
+                    <div class="watch-option youtube-option">
+                        <div class="watch-option-inner">
+                            <div class="option-icon">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <h3>YouTube Channel</h3>
+                            <p>Browse my full-quality, organized portfolio videos and subscribe to stay updated with my latest work.</p>
+                            <div class="btn-container">
+                                <a href="https://www.youtube.com/@flowwithalish/playlists" target="_blank" class="btn btn-youtube">
+                                    <i class="fab fa-youtube"></i> Watch on YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watch-option drive-option">
+                        <div class="watch-option-inner">
+                            <div class="option-icon">
+                                <i class="fab fa-google-drive"></i>
+                            </div>
+                            <h3>Google Drive</h3>
+                            <p>View full-quality, organized portfolio videos on Google Drive. Unauthorized download or use is strictly prohibited.</p>
+                            <div class="btn-container">
+                                <a href="https://drive.google.com/drive/folders/1GQ_JRmztMohY1nBbWltcs3pV03cDEQ-H?usp=drive_link" target="_blank" class="btn btn-drive">
+                                    <i class="fab fa-google-drive"></i> View on Drive
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    
-    
-<!-- Updated Skills Section -->
-<section id="skills" class="skills">
-    <div class="container">
-        <h2>Editing Expertise</h2>
-        <div class="skills-grid">
-            <!-- Existing Items -->
-            <div class="skill-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png" alt="Premiere Pro">
-                <span>Premiere Pro</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/2101px-Adobe_After_Effects_CC_icon.svg.png" alt="After Effects">
-                <span>After Effects</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://www.rippletraining.com/wp-content/uploads/2018/02/davinci-resolve-14-logo.png" alt="DaVinci Resolve">
-                <span>DaVinci Resolve</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://download.blender.org/branding/blender_logo.png" alt="Blender">
-                <span>Blender</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://freepnglogo.com/images/all_img/1691746000capcut-logo%20(2).png" alt="CapCut">
-                <span>CapCut</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://www.vnvideoeditor.com/wp-content/uploads/2024/02/cropped-vn-video-editor.png" alt="VN Editor">
-                <span>VN Editor</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://archive.org/download/power-director-logo/PowerDirector_logo.png" alt="Power Director">
-                <span>Power Director</span>
-            </div>
-            <!-- New Additions -->
-            <div class="skill-item">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/2101px-Adobe_Photoshop_Lightroom_CC_logo.svg.png" alt="Lightroom">
-                <span>Lightroom</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://pngdownload.io/wp-content/uploads/2024/03/Inshot-logo-video-editing-app-app-icon-transparent-PNG-image-jpg.webp" alt="InShot">
-                <span>InShot</span>
-            </div>
-            <div class="skill-item">
-                <img src="https://freelogopng.com/images/all_img/1664216908kinemaster-logo-png.png" alt="KineMaster">
-                <span>KineMaster</span>
-            </div>
-        </div>
-        <div class="skills-description">
-            <p class="animated-paragraph">
-                I am a skilled Video Editor proficient in both PC and mobile editing. Starting with mobile editing <b>Four years ago </b>, I've transitioned to PC for advanced work.<br><br>
-                My expertise spans from basic edits to VFX level, including 3D elements, captions, smooth transitions, chroma keying, Motion Graphics, Camera Tracking, Color Grading, and Sound Design. Additionally, I am a short film editor.
-        </div>
-</div>
-</section>
-
-
-<!-- Replace original portfolio section with: -->
-<section id="portfolio" class="portfolio">
-    <div class="container">
-        <h2>My Video Portfolio</h2>
-        <p class="video-warning"> If you can't see play button on video, please Fullscreen the video first and play it.</p>
-        <div class="filter-buttons">
-            <button class="active" data-filter="all">All</button>
-            <button data-filter="reel">Reels</button>
-            <button data-filter="graphical">Graphical</button>
-            <button data-filter="event">Event</button>
-            <button data-filter="yt">Videos</button>
-        </div>
-<div class="video-grid">
-  <!-- Reels Section -->
-  <div class="reel-grid">
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/piuro%20lassi%20report.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item graphical">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/madhyam%20graphicall.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/king%20ad%20re.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/lions%20final%20day.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/rohit%20rana%20dynasty.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/Birtha%20academy%20%20(1)-.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/piuro%20solution%201.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-    <div class="video-item reel-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/kings%20ielts%20pte%20sat.mp4" type="video/mp4">
-      </video>
-      <button class="fullscreen-btn" aria-label="Fullscreen">⤢</button>
-    </div>
-  </div>
-
-  <!-- Videos Section -->
-  <div class="yt-grid">
-    <div class="video-item yt-item">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/EMONN%20RAPP.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/lions%20horizontal%20(rc).mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/LG%20PROMOO.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/event%20.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/bartabanda%20edit%20in%20short.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/vikram%20wedding.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item event">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/green%20peace%20boarding%20school%20(1).mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item graphical">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/madhyam%202d%20.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-item yt-item graphical">
-      <video controls playsinline webkit-playsinline>
-        <source src="https://raw.githubusercontent.com/manish2150/bigfile/main/Lions%20cup%20cinematic.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
-</div>
-
-
-
-
-        </div>
-    </section>
-    <hr><br>
-        <div class="container">
-    <center><p class="message"><b>To watch the video in a more easier way</b></p>
-    <button class="watch-button" onclick="redirectToDrive()">Click Me</button>
-  </div></center>
-
-  <script>
-    function redirectToDrive() {
-      window.location.href = "https://drive.google.com/drive/u/2/folders/1wWGwagmtjdqyP5pY7mzmIIY5bQqPCQHE";
-    }
-  </script>
-<br><br>
-
-
-    <!-- Add this after Portfolio section -->
-<section id="education" class="education">
-    <div class="container">
-        <h2>EDUCATION: </h2><br>
-        <div class="education-timeline">
-            <!-- +2 Education -->
+     <!-- Education Section -->
+    <section id="education" class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-container">
             <div class="education-item">
-                <div class="edu-logo">
-                    <img src="https://media.edusanjal.com/__sized__/logos/Shree_Vindhyavasini_Secondary_School_logo-thumbnail-200x200.png" alt="Vindhya Vasini Logo">
-                </div>
-                <div class="edu-details">
-                    <h3>+2 Management (Computer Science)</h3>
-                    <p class="institute">Shree Vindhya Vasini Secondary School</p>
-                    <p class="duration">2022 - 2024</p>
-                </div>
-            </div>
-
-            <!-- Bachelor's Education -->
-            <div class="education-item current">
-                <div class="edu-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/5/54/Tribhuvan_University_logo.svg" alt="TU Logo">
-                </div>
-                <div class="edu-details">
-                    <h3>Bachelor in Computer Application</h3>
-                    <p class="institute">Tribhuvan University<br>Prithvi Narayan Campus</p>
-                    <p class="duration">2024 - Present</p>
-                </div>
-            </div>
-        </div>
+    <div class="edu-logo">
+        <img src="https://media.edusanjal.com/__sized__/logos/Shree_Vindhyavasini_Secondary_School_logo-thumbnail-200x200.png" alt="School Logo">
     </div>
-</section>
-
-<!-- Add this after Education section -->
-<section id="journey" class="story-section">
-    <div class="container">
-        <div class="journey-card">
-            <h2>How I Started My Editing Journey ?¿</h2>
-            <div class="journey-content">
-                <p class="story-text">
-                    My editing journey began when I was in class eight, during the time when TikTok was trending. 
-                    I used to watch various editing content and wonder how they were created. Curious to learn, 
-                    I turned to YouTube, where many creators recommended PowerDirector—<strong>which became my first 
-                    editing software.</strong> CapCut existed back then but wasn’t popular yet. So, I experimented on my 
-                    own, using myself as the model and shooting videos to practice editing. Over time, my skills 
-                    improved, leading me to where I am today.
-                </p>
-                
-                <div class="fun-fact">
-                    ✨ <strong>Fun fact:</strong> My fascination with editing started because I wanted to add a flying helicopter 
-                    to my video—and that small curiosity sparked my entire journey!
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</section>
-
- <!-- Add after Journey section -->
- <section id="faq" class="faq-section">
-    <div class="container">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-grid">
-        <!-- FAQ Item 1 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            What's your typical turnaround time for projects?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Standard projects typically take 2 days depending on complexity. Rush jobs are available with a 24-48 hour delivery time.</p>
-          </div>
-        </div>
-        <!-- FAQ Item 2 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            What file formats do you work with?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>I work with all major formats: MP4, MP3, MOV, AVI, RAW camera files etc. Final delivery is typically in H.264 MP4 unless otherwise requested.</p>
-          </div>
-        </div>
-        <!-- FAQ Item 3 -->
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            Do you provide raw project files?
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Yes, I provide raw projects file. This includes all project files, assets, and editable layers.</p>
-          </div>
-        </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Can you work with multi-camera setups?
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Absolutely. I can manage and edit footage from multiple cameras, ensuring that the final product captures the best angles and maintains a seamless narrative.</p>
-            </div>
-          </div>
-
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              Do you offer color grading and correction services?
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Yes, I provide professional color grading and correction to ensure your footage has a consistent and cinematic look throughout the project.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- Add after FAQ section -->
-<section id="vision" class="vision-section">
-    <div class="container">
-        <div class="vision-card">
-            <h2>My Vision</h2>
-            <div class="vision-content">
-                <p class="vision-text">
-                    I have long aspired to create professional short films that captivate audiences and spark meaningful conversations. To bring this vision to life, I’m 
-                    looking to assemble a dedicated group of individuals from <b>Pokhara</b> who share my passion for cinematography. If you own camera equipment and are eager
-                     to hone your craft, I invite you to join me on this creative journey. Together, we can learn from one another, push our artistic boundaries,
-                     and produce compelling short films that showcase our collective talent. Let’s collaborate, inspire, and grow as we embark on this exciting adventure in filmmaking.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="contact">
-    <div class="container">
-        <h2>Contact Me</h2><br>
-        <form 
-            id="contact-form" 
-            action="https://formspree.io/f/xoverwwn"
-            method="POST"
-        >
-
-            <div id="error-messages"></div>
-            <div id="success-message" class="message-container" style="display: none;"></div>
-            <!-- Honeypot field -->
-            <input type="text" name="honeypot" style="display:none;">
+    <h3>+2 Education</h3>
+    <p>Management Stream</p>
+    <p>Completed in <b>2024</b></p>
+</div>
             
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required 
-                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                   title="Please enter a valid email address (e.g., user@example.com)">
-            <textarea name="message" placeholder="Your Message" required minlength="5"></textarea>
-            <button type="submit" name="send">Send Message</button>
-        </form>
+            <div class="education-item">
+             <div class="edu-logo">
+        <img src="https://storage.googleapis.com/www-static-academic-influence/school-logos/tribhuvan-university" alt="School Logo">
+    </div>
+                <h3>Tribhuvan University</h3>
+                <p>Bachelor in Computer Application</p>
+               <b> <p>Currently</p></b>
+
+                
+            </div>
+        </div>
+          <BR> <h2 class="section-title">           </h2>
+        <div class="education-container">
+              <div class="education-item">
+           <div class="edu-logo">
+        <img src="https://raw.githubusercontent.com/manish2150/alishbhandari/main/madhyamlogo.jpg" alt="School Logo">
+    </div>
+                <h3>Guiding Intern</h3>
+                <p>At Madhyam Nepal</p>
+              <b>  <p>Currently</p></b>
+            </div>
+    </section>
+
+    <!-- Story Section -->
+<section id="story" class="section">
+    <h2 class="section-title">How I Started Editing</h2>
+    <div class="story-content">
+        <p>My journey as a video editor began as a curious teenager, spending hours on TikTok and watching editing tutorials, dreaming of creating videos that truly stand out. One day, I saw a video with a helicopter effect and was determined to try it myself — back when CapCut wasn’t popular, and the top tools were KineMaster and PowerDirector. PowerDirector became my first editing software, and from that moment, my hobby transformed into a deep passion for visual storytelling.</p>
+        <br><br>
+        <p>Over the years, I’ve honed my skills through countless projects, experimenting with different styles, techniques, and software to deliver cinematic visuals that captivate audiences. Today, I work as a video editor in Pokhara, bringing creativity, precision, and storytelling to every project I take on, whether it’s short films, ads, or promotional reels.</p>
+
     </div>
 </section>
-    
+
+      <!-- Story Section -->
+    <section id="story" class="section">
+ <h2 class="section-title" style="color: #ff9966;">Tomorrow’s Vision</h2>
+
+        <div class="story-content">
+            <p>That’s a secret, bruhh! 🤫</p>
+            <p>Hit me up if you’d like to collaborate — it’ll be way more fun if you're from Pokhara! 😉</p>
+           
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <p>flowwithalish@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+977 9769487298</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Pokhara, Nepal</p>
+                    </div>
+                </div>
+            </div>
+            
+<form id="contactForm" action="https://formspree.io/f/mrbalozl" method="POST" class="contact-form">
+    <div class="form-group">
+        <input type="text" name="name" placeholder="Your Name" required>
+    </div>
+    <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Your Gmail (example@gmail.com)" required>
+    </div>
+    <div class="form-group">
+        <input type="text" name="subject" placeholder="Subject" required>
+    </div>
+    <div class="form-group">
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send Message</button>
+</form>
+
+        </div>
+    </section>
+
+    <style>
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .success-message {
+    color: green;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+</style>
+
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Manish Bhandari. All rights reserved.</p>
-            <div class="social-links">
+        <div class="social-links">
+            <a href="https://wa.me/9779817186819?text=Hello%20Alish%2C%20I%20am%20interested!" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/jhateygamingofficial" class="social-link"><i class="fab fa-facebook-f"></i></a>
+           <a href="https://www.youtube.com/@flowwithalish/playlists" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/flowwith.alish/" class="social-link"><i class="fab fa-instagram"></i></a>
 
-
-
-            
-                <a href="https://www.facebook.com/jhateygamingofficial"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/alishbhandari.2150/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/manish-bhandari-24215a33b/"><i class="fab fa-linkedin-in"></i></a>
-            </div>
         </div>
+        <p class="copyright">© 2025 Alish Bhandari. All Rights Reserved.</p>
     </footer>
-    
-
+<a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
     <script>
+   document.addEventListener('DOMContentLoaded', function() {
 
-
-// Update section observer configuration
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            const paragraph = entry.target.querySelector('.animated-paragraph');
-            if (paragraph) {
-                paragraph.classList.add('visible');
-            }
-            // Add for journey card
-            if(entry.target.id === 'journey') {
-                entry.target.querySelector('.journey-card').classList.add('visible');
-            }
+    // ================= HERO PADDING =================
+    function adjustHeroPadding() {
+        const navbar = document.getElementById('navbar');
+        const hero = document.querySelector('.hero');
+        if (navbar && hero) {
+            hero.style.paddingTop = navbar.offsetHeight + 'px';
         }
-    });
-}, { 
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px' // Adjust root margin
-});
-document.querySelectorAll('section').forEach(section => {
-    sectionObserver.observe(section);
-});
-
-// Intersection Observer for skill items
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.animation = `skillEntrance 0.6s ease ${index * 0.1}s forwards`;
-            }, 300);
-        }
-    });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.skill-item').forEach(skill => {
-    skillObserver.observe(skill);
-});
-
-// Menu toggle functionality
-function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-    
-    if (navLinks.classList.contains('active')) {
-        document.querySelectorAll('.nav-links li').forEach((item, index) => {
-            item.style.animation = `slideIn 0.3s ease forwards ${index * 0.1}s`;
-        });
     }
-}
+    window.addEventListener('load', adjustHeroPadding);
+    window.addEventListener('resize', adjustHeroPadding);
 
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    const navLinks = document.querySelector('.nav-links');
+    // ================= SIDEBAR / HAMBURGER =================
     const hamburger = document.querySelector('.hamburger');
+    const sidebar = document.querySelector('.sidebar');
+    const closeBtn = document.querySelector('.close-btn');
 
-    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        navLinks.classList.remove('active');
-    }
-});
+    // Toggle sidebar
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        sidebar.classList.toggle('active');
+        animateHamburger();
+    });
 
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-        if (window.innerWidth <= 768) {
-            document.querySelector('.nav-links').classList.remove('active');
+    // Close button click
+    closeBtn.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        hamburger.classList.remove('active');
+        animateHamburger(true);
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+            sidebar.classList.remove('active');
+            hamburger.classList.remove('active');
+            animateHamburger(true);
         }
     });
-});
 
-// New Portfolio JavaScript
-document.querySelectorAll('.filter-buttons button').forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.dataset.filter;
-                
-                document.querySelectorAll('.filter-buttons button').forEach(btn => 
-                    btn.classList.remove('active'));
-                button.classList.add('active');
-
-                document.querySelectorAll('.video-item').forEach(item => {
-                    const isReel = item.classList.contains('reel-item');
-                    const isYt = item.classList.contains('yt-item');
-                    const isGraphical = item.classList.contains('graphical');
-                    const isEvent = item.classList.contains('event');
-
-                    let shouldShow = false;
-                    
-                    switch(filter) {
-                        case 'all': shouldShow = true; break;
-                        case 'reel': shouldShow = isReel && !isGraphical; break;
-                        case 'graphical': shouldShow = isGraphical; break;
-                        case 'event': shouldShow = isEvent; break;
-                        case 'yt': shouldShow = isYt && !isEvent && !isGraphical; break;
-                    }
-
-                    item.style.display = shouldShow ? 'block' : 'none';
-                    
-                    const reelGrid = document.querySelector('.reel-grid');
-                    const ytGrid = document.querySelector('.yt-grid');
-                    reelGrid.style.display = Array.from(reelGrid.children).some(child => 
-                        child.style.display !== 'none') ? 'grid' : 'none';
-                    ytGrid.style.display = Array.from(ytGrid.children).some(child => 
-                        child.style.display !== 'none') ? 'grid' : 'none';
-                });
-            });
+    // Close when sidebar link is clicked
+    document.querySelectorAll('.sidebar-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            hamburger.classList.remove('active');
+            animateHamburger(true);
         });
+    });
 
-        document.querySelectorAll('.reel-item .fullscreen-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const video = button.closest('.reel-item').querySelector('video');
-                if (!document.fullscreenElement) {
-                    if (video.requestFullscreen) {
-                        video.requestFullscreen();
-                    } else if (video.webkitRequestFullscreen) {
-                        video.webkitRequestFullscreen();
-                    } else if (video.msRequestFullscreen) {
-                        video.msRequestFullscreen();
-                    }
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                }
-            });
+    // Hamburger animation function
+    function animateHamburger(reset = false) {
+        const spans = hamburger.querySelectorAll('span');
+        if (!reset && hamburger.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(7px, 7px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    }
+
+    // ================= SCROLL ANIMATIONS =================
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('animate');
         });
-        // End of New Portfolio JavaScript
+    }, observerOptions);
 
+    document.querySelectorAll('.section-title, .profile-img, .about-text, .company, .software, .portfolio-item, .education-item, .story-content, .info-item, .form-group, .companies-title')
+        .forEach(el => observer.observe(el));
 
-
-
-
-
-
-
-
- // FAQ Interaction
- document.querySelectorAll('.faq-question').forEach(button => {
-      button.addEventListener('click', (event) => {
-        const faqItem = button.closest('.faq-item');
-        const isOpen = button.getAttribute('aria-expanded') === 'true';
-        
-        // Toggle the clicked FAQ item
-        button.setAttribute('aria-expanded', !isOpen);
-        faqItem.classList.toggle('active');
-
-        // Close other items unless Shift is held down
-        if (!event.shiftKey) {
-          document.querySelectorAll('.faq-item').forEach(otherItem => {
-            if (otherItem !== faqItem) {
-              otherItem.classList.remove('active');
-              const otherButton = otherItem.querySelector('.faq-question');
-              if (otherButton) {
-                otherButton.setAttribute('aria-expanded', 'false');
-              }
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
             }
-          });
-        }
-      });
+        });
     });
 
-    // Intersection Observer for smooth fade-in animations
-    const faqObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          faqObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.faq-item').forEach(item => {
-      faqObserver.observe(item);
+    // ================= BACK TO TOP =================
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        backToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
     });
-
-
-
-
-    
-
-    
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const errorContainer = document.getElementById('error-messages');
-    const successContainer = document.getElementById('success-message'); // Add this in HTML
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-    function showSuccess(message) {
-    successContainer.innerHTML = `
-        <div class="success-alert">
-            <svg viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-            </svg>
-            <p>${message}</p>
-        </div>
-    `;
-    }
-
-    form.addEventListener('submit', async (e) => {
+    backToTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        errorContainer.innerHTML = '';
-        successContainer.innerHTML = '';
-        
-        // Get form values
-        const formData = new FormData(form);
-        const entries = Object.fromEntries(formData.entries());
-        
-        // Honeypot check
-        if (entries.honeypot) {
-            showErrors(['Bot detected']);
-            return;
-        }
-
-        // Client-side validation
-        const errors = [];
-        
-        if (!entries.name?.trim()) errors.push('Name is required');
-        if (!entries.email?.trim()) {
-            errors.push('Email is required');
-        } else if (!emailRegex.test(entries.email)) {
-            errors.push('Please enter a valid email address');
-        }
-        if (!entries.message?.trim()) {
-            errors.push('Message is required');
-        } else if (entries.message.trim().length < 10) {
-            errors.push('Message must be at least 10 characters');
-        }
-
-        if (errors.length > 0) {
-            showErrors(errors);
-            return;
-        }
-
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            
-            const result = await response.json();
-
-            if (result.ok || result.success) {
-                showSuccess('Message sent successfully!');
-                form.reset();
-            } else {
-                const errorMsg = result.errors?.[0]?.message || 
-                               result.error || 
-                               'Submission failed. Please try again.';
-                showErrors([errorMsg]);
-            }
-        } catch (error) {
-            console.error('Submission error:', error);
-            showErrors([`Failed to send: ${error.message}`]);
-        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    function showErrors(messages) {
-        errorContainer.innerHTML = `
-            <div class="alert-error">
-                <ul>
-                    ${messages.map(msg => `<li>${msg}</li>`).join('')}
-                </ul>
-            </div>
-        `;
-        errorContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function showSuccess(message) {
-        successContainer.innerHTML = `
-            <div class="success-alert">
-                <svg viewBox="0 0 24 24">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-                ${message}
-            </div>
-        `;
-        successContainer.style.display = 'block';
-        successContainer.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => successContainer.style.display = 'none', 5000);
-    }
-});
-
-
-
-// Skill item touch handling
-document.querySelectorAll('.skill-item').forEach(item => {
-    let touchTimer;
-    
-    const handleTouch = (e) => {
-        e.preventDefault();
-        clearTimeout(touchTimer);
-        
-        // Remove active class from all items
-        document.querySelectorAll('.skill-item').forEach(i => i.classList.remove('active'));
-        
-        // Add active class to touched item
-        item.classList.add('active');
-        
-        // Remove active class after animation completes
-        touchTimer = setTimeout(() => {
-            item.classList.remove('active');
-        }, 600); // Matches 0.6s transition duration
+    // ================= SCROLL REVEAL =================
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    const revealOnScroll = () => {
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+        });
     };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
 
-    if ('ontouchstart' in window) {
-        // Mobile touch events
-        item.addEventListener('touchstart', handleTouch);
-        item.addEventListener('touchend', (e) => e.preventDefault());
-    } else {
-        // Desktop hover events
-        item.addEventListener('mouseenter', () => item.classList.add('hover'));
-        item.addEventListener('mouseleave', () => item.classList.remove('hover'));
+    // ================= FORM VALIDATION =================
+    const form = document.querySelector(".contact-form");
+    const emailInput = form.querySelector('input[name="email"]');
+    const messageBox = form.querySelector('textarea[name="message"]');
+
+    const emailError = document.createElement("div");
+    emailError.classList.add("error-message");
+    emailInput.insertAdjacentElement("afterend", emailError);
+
+    const formMessage = document.createElement("div");
+    formMessage.classList.add("error-message");
+    messageBox.insertAdjacentElement("afterend", formMessage);
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let hasError = false;
+        emailError.textContent = "";
+        formMessage.textContent = "";
+        formMessage.className = "error-message";
+
+        const emailValue = emailInput.value.trim();
+        if (!emailValue.includes("@")) { emailError.textContent = "Email must include '@'"; hasError = true; }
+        else if (!emailValue.endsWith("@gmail.com")) { emailError.textContent = "Email must end with '@gmail.com'"; hasError = true; }
+
+        if (!hasError) {
+            fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+                .then(response => {
+                    if (response.ok) {
+                        formMessage.textContent = "Form submitted successfully!";
+                        formMessage.className = "success-message";
+                        form.reset();
+                    } else {
+                        formMessage.textContent = "Form submission failed.";
+                        formMessage.className = "error-message";
+                    }
+                }).catch(() => {
+                    formMessage.textContent = "Form submission failed.";
+                    formMessage.className = "error-message";
+                });
+        }
+    });
+
+    // ================= VIDEO PLAYER =================
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const videoPlayer = document.querySelector('.video-player');
+    const videoIframe = document.querySelector('.video-iframe');
+    const closeButton = document.querySelector('.close-button');
+    const videoContent = document.querySelector('.video-content');
+
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const videoId = item.getAttribute('data-video-id');
+            const isReel = item.classList.contains('reel');
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&fs=0`;
+            videoIframe.src = embedUrl;
+
+            if (isReel) videoContent.classList.add('reel-format');
+            else videoContent.classList.remove('reel-format');
+
+            videoPlayer.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    closeButton.addEventListener('click', closeVideoPlayer);
+    videoPlayer.addEventListener('click', (e) => { if (e.target === videoPlayer) closeVideoPlayer(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && videoPlayer.classList.contains('active')) closeVideoPlayer(); });
+
+    function closeVideoPlayer() {
+        videoPlayer.classList.remove('active');
+        videoIframe.src = '';
+        document.body.style.overflow = 'auto';
     }
+
+    document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+        thumbnail.addEventListener('contextmenu', e => e.preventDefault());
+    });
+
+    // Filter portfolio items
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+            portfolioItems.forEach(item => {
+                const type = item.getAttribute('data-type');
+                item.style.display = (filter === 'all' || filter === type) ? 'block' : 'none';
+            });
+        });
+    });
+
+    // ================= FULLSCREEN DETECTION =================
+    function handleFullscreenChange() {
+        const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+        if (isFullscreen) {
+            showFullscreenMessage();
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+            else if (document.msExitFullscreen) document.msExitFullscreen();
+        }
+    }
+
+    function showFullscreenMessage() {
+        const fullscreenMessage = document.querySelector('.fullscreen-message');
+        fullscreenMessage.classList.add('active');
+        setTimeout(() => fullscreenMessage.classList.remove('active'), 4000);
+    }
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    // ================= HOVER EFFECTS =================
+    document.querySelectorAll('.watch-option').forEach(option => {
+        option.addEventListener('mouseenter', () => {
+            option.style.transform = 'translateY(-8px)';
+            option.style.boxShadow = '0 12px 25px rgba(0, 0, 0, 0.35)';
+        });
+        option.addEventListener('mouseleave', () => {
+            option.style.transform = 'translateY(0)';
+            option.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.2)';
+        });
+    });
+
+    // ================= ALTERNATE SECTION ANIMATION =================
+    const section = document.getElementById('alternateSection');
+    setTimeout(() => { section.classList.add('animate'); }, 300);
+
 });
 
-
-  // Initialize modal as closed
-  document.getElementById('cvModal').style.display = 'none';
-
-  function openModal() {
-    document.getElementById('cvModal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('cvModal').style.display = 'none';
-  }
-
-  // Close modal when clicking outside
-  window.onclick = function(event) {
-    const modal = document.getElementById('cvModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  };
-
-  // Close with ESC key
-  document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('cvModal');
-    if (e.key === 'Escape' && modal.style.display === 'flex') {
-      closeModal();
-    }
-  });
- function openModal() {
-    document.getElementById('cvModal').style.display = 'block';
-    // Don't disable body scroll — so user can scroll page behind modal
-  }
-
-  function closeModal() {
-    document.getElementById('cvModal').style.display = 'none';
-  }
-
-  // Close modal when clicking outside modal-content
-  window.onclick = function(event) {
-    const modal = document.getElementById('cvModal');
-    if (event.target === modal) {
-      closeModal();
-    }
-  };
-
-  // Close with ESC key
-  document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('cvModal');
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
 
     </script>
+</body>
+</html>
+
+
+<STYLE>
+    .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--light);
+    cursor: pointer;
+    z-index: 1600;
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    color: var(--primary);
+}
+
+</STYLE>
